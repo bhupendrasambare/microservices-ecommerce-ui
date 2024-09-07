@@ -2,7 +2,9 @@ import React from "react"
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
 import 'bootstrap/dist/css/bootstrap.css';
-import './themes/microservices-ecommerce-ui/styles.css'
+import './themes/microservices-ecommerce-ui/styles.css';
+import './themes/microservices-ecommerce-ui/styles.scss'
+import 'tiny-slider/dist/tiny-slider.css';
 import { persistor, store } from "./storage";
 import { PersistGate } from "redux-persist/integration/react";
 import App from "./app";
