@@ -1,0 +1,35 @@
+.login-rich-content {
+    background-image: url("../assets/images/home-bg.jpg");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    height: 500px;
+}
+.login-rich-content vaadin-login-form {
+    background-color: #314d43 !important;
+    align-items: center;
+    display: flex;
+    max-width: 300px;
+}
+.login-rich-content vaadin-login-form-wrapper {
+    background-color: #314d43 !important;
+    background-image: none;
+}
+
+@media (max-width:400px) {
+    .login-rich-content {
+        background-image: none;
+        background-color: transparent !important;
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        height: 500px;
+    }
+
+    .login-rich-content vaadin-login-form {
+        background-color: #314d43 !important;
+        align-items: center;
+        display: flex;
+        max-width: 100%;
+    }
+}

@@ -6,7 +6,9 @@ import BestSelles from 'Frontend/components/BestSelles';
 import Testmonials from 'Frontend/components/Testmonials';
 import NavBar from 'Frontend/components/NavBar';
 import Footer from 'Frontend/components/Footer';
-import RecentBlogs from 'Frontend/components/blogComponents/RecentBlogs';
+import "../style/index.css"
+import "../style/index.scss"
+import "../style/login.css"
 
 function Home() {
   return (
