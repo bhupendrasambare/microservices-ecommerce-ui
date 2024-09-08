@@ -1,102 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Playwrite+BE+VLG:wght@100..400&display=swap');
-
-/* Import your application global css files here or add the styles directly to this file */
-.text-design {
-    font-family: "Playwrite BE VLG", cursive;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-}
-#notfound {
-    height: 100vh;
-}
-
-#notfound .notfound {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-}
-
-.notfound {
-    max-width: 410px;
-    width: 100%;
-    text-align: center;
-}
-
-.notfound .notfound-404 {
-    height: 280px;
-    position: relative;
-    z-index: -1;
-}
-
-.notfound .notfound-404 h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 230px;
-    margin: 0px;
-    font-weight: 900;
-    position: absolute;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-            transform: translateX(-50%);
-    background: url('../../assets/images/not-found.jpg') no-repeat;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: cover;
-    background-position: center;
-}
-
-
-.notfound h2 {
-    font-family: 'Montserrat', sans-serif;
-    color: #0021648b;
-    font-size: 24px;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin-top: 0;
-}
-
-.notfound p {
-    font-family: 'Montserrat', sans-serif;
-    color: #0021648b;
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 20px;
-    margin-top: 0px;
-}
-
-.notfound a {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    text-decoration: none;
-    text-transform: uppercase;
-    background: #0021648b;
-    display: inline-block;
-    padding: 15px 30px;
-    border-radius: 40px;
-    color: #fff;
-    font-weight: 700;
-    -webkit-box-shadow: 0px 4px 15px -5px #011d54;
-            box-shadow: 0px 4px 15px -5px #0054fa;
-}
-
-
-@media only screen and (max-width: 767px) {
-    .notfound .notfound-404 {
-        height: 142px;
-    }
-    .notfound .notfound-404 h1 {
-        font-size: 112px;
-    }
-}
-
-.cursor-pointer{
-    cursor: pointer;
-}
-
+/*
+* Template Name: UntreeStore
+* Template Author: Untree.co
+* Author URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 body {
   overflow-x: hidden;
@@ -220,7 +127,7 @@ a {
       top: 0px;
       right: 0px;
       z-index: 2;
-      max-width: 780px;
+      max-width: min(780px,100%);
       left: -20px; }
       @media (min-width: 768px) {
         .hero .hero-img-wrap img {
@@ -240,9 +147,9 @@ a {
     .hero .hero-img-wrap:after {
       content: "";
       position: absolute;
-      width: 255px;
+      width: min(250px,40%);
       height: 217px;
-      background-image: url("../images/dots-light.svg");
+      background-image: url("../../assets/web/dots-light.svg");
       background-size: contain;
       background-repeat: no-repeat;
       right: -100px;
@@ -371,7 +278,7 @@ a {
       content: "";
       width: 255px;
       height: 217px;
-      background-image: url("../images/dots-yellow.svg");
+      background-image: url("../../assets/web/dots-yellow.svg");
       background-repeat: no-repeat;
       background-size: contain;
       -webkit-transform: translate(-40%, -40%);
@@ -417,7 +324,7 @@ a {
       content: "";
       width: 255px;
       height: 217px;
-      background-image: url("../images/dots-green.svg");
+      background-image: url("../../assets/web/dots-green.svg");
       background-size: contain;
       background-repeat: no-repeat;
       -webkit-transform: translate(-40%, -40%);
@@ -802,3 +709,10 @@ textarea {
     height: 50px;
     border-radius: 50%;
     background: rgba(59, 93, 80, 0.2); }
+
+    .footer-g5-width{
+      width: 100% !important;
+    }
+    .max-w-120px{
+      max-width: 120px;
+    }

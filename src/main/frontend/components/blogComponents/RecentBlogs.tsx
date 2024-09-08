@@ -34,7 +34,7 @@ function RecentBlogs() {
                     <div className="post-entry">
                         <a href="#" className="post-thumbnail"><img src={Post2} alt="Image" className="img-fluid"/></a>
                         <div className="post-content-entry">
-                            <h3><a href="#">How To Keep Your Furniture Clean</a></h3>
+                            <h3><a href="#">How To Keep Your Stylezture Clean</a></h3>
                             <div className="meta">
                                 <span>by <a href="#">Robert Fox</a></span> <span>on <a href="#">Dec 15, 2021</a></span>
                             </div>
@@ -46,7 +46,7 @@ function RecentBlogs() {
                     <div className="post-entry">
                         <a href="#" className="post-thumbnail"><img src={Post3} alt="Image" className="img-fluid"/></a>
                         <div className="post-content-entry">
-                            <h3><a href="#">Small Space Furniture Apartment Ideas</a></h3>
+                            <h3><a href="#">Small Space Stylezture Apartment Ideas</a></h3>
                             <div className="meta">
                                 <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 12, 2021</a></span>
                             </div>

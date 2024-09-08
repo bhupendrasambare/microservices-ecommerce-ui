@@ -12,12 +12,11 @@ function Home() {
   return (
     <div>
         <NavBar/>
-        <HeroSection/>
+        <HeroSection title='Modern Interior Design Studio' description='Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.' showButton={true}/>
         <HomeFeatured/>
         <Extras/>
         <BestSelles/>
         <Testmonials/>
-        <RecentBlogs/>
         <Footer/>
     </div>
   )
