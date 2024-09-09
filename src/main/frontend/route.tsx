@@ -1,12 +1,13 @@
 import { createBrowserRouter,RouteObject } from 'react-router-dom';
 import React from "react";
-import NotFound from './pages/NotFound';
-import Home from './pages/Home';
-import Shop from './pages/Shop';
-import About from './pages/About';
-import Services from './pages/Services';
-import ContactPage from './pages/ContactPage';
-import Cart from './pages/Cart';
+import NotFound from 'Frontend/pages/NotFound';
+import Home from 'Frontend/pages/home/Home';
+import Shop from 'Frontend/pages/home/Shop';
+import About from 'Frontend/pages/home/About';
+import Services from 'Frontend/pages/home/Services';
+import ContactPage from 'Frontend/pages/home/ContactPage';
+import Cart from 'Frontend/pages/home/Cart';
+import Sellerindex from 'Frontend/pages/seller/Sellerindex'
 
 const routes: RouteObject[] = [
   { path: '/', element: <Home /> },
@@ -16,6 +17,8 @@ const routes: RouteObject[] = [
   { path: '/contact', element: <ContactPage /> },
   { path: '/cart', element: <Cart /> },
   { path: '*', element: <NotFound /> },
+
+  { path: '/seller/', element: <Sellerindex /> },
   ];
   
   const router = createBrowserRouter(routes);

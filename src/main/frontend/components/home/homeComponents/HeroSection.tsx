@@ -1,5 +1,5 @@
 import React from 'react'
-import Couch from '../../assets/web/couch.png'
+import Couch from 'Frontend/assets/web/couch.png'
 import { useNavigate } from 'react-router-dom';
 
 interface ChildProps {

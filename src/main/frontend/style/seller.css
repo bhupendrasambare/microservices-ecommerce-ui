@@ -1,0 +1,39 @@
+.seller-sidebar {
+    width: 250px;
+    min-height: 100vh;
+    transition: width 0.3s;
+}
+
+.seller-sidebar.collapsed {
+    width: 80px;
+}
+
+.seller-sidebar-header {
+    padding: 10px;
+    text-align: center;
+}
+
+.seller-toggle-btn {
+    width: 100%;
+    background-color: transparent !important;
+    justify-content: start;
+    margin-left: -35px;
+    border: none !important;
+}
+
+.seller-content {
+    flex-grow: 1;
+}
+
+.seller-nav-link {
+    padding: 10px 20px !important;
+    color: #919191 !important;
+}
+
+.seller-nav-link.active {
+    color: #ffffff !important;
+}
+
+.seller-nav-link:hover {
+    color: #ffffff !important;
+}

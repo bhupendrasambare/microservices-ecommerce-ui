@@ -1,7 +1,7 @@
 import React from 'react'
-import Post1 from "../../assets/web/post-1.jpg"
-import Post2 from "../../assets/web/post-2.jpg"
-import Post3 from "../../assets/web/post-3.jpg"
+import Post1 from "Frontend/assets/web/post-1.jpg"
+import Post2 from "Frontend/assets/web/post-2.jpg"
+import Post3 from "Frontend/assets/web/post-3.jpg"
 
 function RecentBlogs() {
   return (

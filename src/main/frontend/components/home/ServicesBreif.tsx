@@ -1,8 +1,8 @@
 import React from 'react'
-import Truck from "../assets/web/truck.svg"
-import Bag from "../assets/web/bag.svg"
-import Support from "../assets/web/support.svg"
-import ReturnLogo from "../assets/web/return.svg"
+import Truck from "Frontend/assets/web/truck.svg"
+import Bag from "Frontend/assets/web/bag.svg"
+import Support from "Frontend/assets/web/support.svg"
+import ReturnLogo from "Frontend/assets/web/return.svg"
 
 function ServicesBreif() {
   return (

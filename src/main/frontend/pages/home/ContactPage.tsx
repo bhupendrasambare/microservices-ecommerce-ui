@@ -1,6 +1,6 @@
-import Footer from 'Frontend/components/Footer'
-import HeroSection from 'Frontend/components/homeComponents/HeroSection'
-import NavBar from 'Frontend/components/NavBar'
+import Footer from 'Frontend/components/home/Footer'
+import HeroSection from 'Frontend/components/home/homeComponents/HeroSection'
+import NavBar from 'Frontend/components/home/NavBar'
 import React from 'react'
 
 function ContactPage() {

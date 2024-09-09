@@ -1,9 +1,9 @@
-import Footer from 'Frontend/components/Footer'
-import HeroSection from 'Frontend/components/homeComponents/HeroSection'
-import NavBar from 'Frontend/components/NavBar'
-import Product1 from '../assets/web/product-1.png'
-import Product2 from '../assets/web/product-2.png'
-import Product3 from '../assets/web/product-3.png'
+import Footer from 'Frontend/components/home/Footer'
+import HeroSection from 'Frontend/components/home/homeComponents/HeroSection'
+import NavBar from 'Frontend/components/home/NavBar'
+import Product1 from 'Frontend/assets/web/product-1.png'
+import Product2 from 'Frontend/assets/web/product-2.png'
+import Product3 from 'Frontend/assets/web/product-3.png'
 import React from 'react'
 
 function Cart() {

@@ -1,6 +1,6 @@
 import React from 'react'
-import Sofa from "../assets/web/sofa.png"
-import Envelope from "../assets/web/envelope-outline.svg"
+import Sofa from "Frontend/assets/web/sofa.png"
+import Envelope from "Frontend/assets/web/envelope-outline.svg"
 import { LiaInstagram, LiaLinkedin } from 'react-icons/lia'
 import { RiTwitterXFill } from 'react-icons/ri'
 import { SlSocialFacebook } from 'react-icons/sl'

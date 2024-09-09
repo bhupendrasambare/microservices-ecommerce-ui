@@ -1,8 +1,8 @@
-import Footer from 'Frontend/components/Footer'
-import Extras from 'Frontend/components/homeComponents/Extras'
-import HeroSection from 'Frontend/components/homeComponents/HeroSection'
-import NavBar from 'Frontend/components/NavBar'
-import Testmonials from 'Frontend/components/Testmonials'
+import Footer from 'Frontend/components/home/Footer'
+import Extras from 'Frontend/components/home/homeComponents/Extras'
+import HeroSection from 'Frontend/components/home/homeComponents/HeroSection'
+import NavBar from 'Frontend/components/home/NavBar'
+import Testmonials from 'Frontend/components/home/Testmonials'
 import React from 'react'
 
 function About() {

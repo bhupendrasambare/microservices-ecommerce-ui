@@ -1,8 +1,8 @@
 import React from 'react'
-import CrossSvg from "../../assets/web/cross.svg"
-import Product1 from "../../assets/web//product-1.png"
-import Product2 from "../../assets/web//product-2.png"
-import Product3 from "../../assets/web//product-3.png"
+import CrossSvg from "Frontend/assets/web/cross.svg"
+import Product1 from "Frontend/assets/web//product-1.png"
+import Product2 from "Frontend/assets/web//product-2.png"
+import Product3 from "Frontend/assets/web//product-3.png"
 
 
 function Products() {

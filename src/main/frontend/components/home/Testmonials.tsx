@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import Person1 from "../assets/web/person-1.png";
+import Person1 from "Frontend/assets/web/person-1.png";
 import { tns } from 'tiny-slider';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 

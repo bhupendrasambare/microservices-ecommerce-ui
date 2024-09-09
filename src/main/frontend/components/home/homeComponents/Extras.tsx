@@ -1,12 +1,12 @@
 import React from 'react'
-import Truck from '../../assets/web/truck.svg'
-import Bag from '../../assets/web/bag.svg'
-import Support from '../../assets/web/support.svg'
-import Return from '../../assets/web/return.svg'
-import WhyUs from '../../assets/web/why-choose-us-img.jpg'
-import ImageGrid1 from '../../assets/web/img-grid-1.jpg'
-import ImageGrid2 from '../../assets/web/img-grid-2.jpg'
-import ImageGrid3 from '../../assets/web/img-grid-3.jpg'
+import Truck from 'Frontend/assets/web/truck.svg'
+import Bag from 'Frontend/assets/web/bag.svg'
+import Support from 'Frontend/assets/web/support.svg'
+import Return from 'Frontend/assets/web/return.svg'
+import WhyUs from 'Frontend/assets/web/why-choose-us-img.jpg'
+import ImageGrid1 from 'Frontend/assets/web/img-grid-1.jpg'
+import ImageGrid2 from 'Frontend/assets/web/img-grid-2.jpg'
+import ImageGrid3 from 'Frontend/assets/web/img-grid-3.jpg'
 
 function Extras() {
   return (

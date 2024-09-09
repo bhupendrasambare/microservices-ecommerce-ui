@@ -1,6 +1,6 @@
-import Footer from 'Frontend/components/Footer';
-import HeroSection from 'Frontend/components/homeComponents/HeroSection';
-import NavBar from 'Frontend/components/NavBar';
+import Footer from 'Frontend/components/home/Footer';
+import HeroSection from 'Frontend/components/home/homeComponents/HeroSection';
+import NavBar from 'Frontend/components/home/NavBar';
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -34,7 +34,7 @@ function NotFound() {
                         </span>
                         <h2 className="display-3 text-black">Thank you!</h2>
                         <p className="lead mb-5">You order was successfuly completed.</p>
-                        <p><a href="shop.html" className="btn btn-sm btn-outline-black">Back to shop</a></p>
+                        <p><a onClick={()=>navigate("/shop")} className="btn btn-sm btn-outline-black">Back to shop</a></p>
                         </div>
                     </div>
                 </div>

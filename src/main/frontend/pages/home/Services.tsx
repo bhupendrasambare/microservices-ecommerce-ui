@@ -1,9 +1,9 @@
-import Footer from 'Frontend/components/Footer'
-import HeroSection from 'Frontend/components/homeComponents/HeroSection'
-import HomeFeatured from 'Frontend/components/homeComponents/HomeFeatured'
-import NavBar from 'Frontend/components/NavBar'
-import ServicesBreif from 'Frontend/components/ServicesBreif'
-import Testmonials from 'Frontend/components/Testmonials'
+import Footer from 'Frontend/components/home/Footer'
+import HeroSection from 'Frontend/components/home/homeComponents/HeroSection'
+import HomeFeatured from 'Frontend/components/home/homeComponents/HomeFeatured'
+import NavBar from 'Frontend/components/home/NavBar'
+import ServicesBreif from 'Frontend/components/home/ServicesBreif'
+import Testmonials from 'Frontend/components/home/Testmonials'
 import React from 'react'
 
 function Services() {

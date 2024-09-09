@@ -1,17 +1,20 @@
 import { RootState } from 'Frontend/storage';
 import React, { useState } from 'react'
 import { Navbar, Nav, Container } from 'react-bootstrap';
-import { LiaShoppingCartSolid, LiaUserSolid } from 'react-icons/lia';
-import { useSelector } from 'react-redux';
+import { LiaShoppingCartSolid, LiaSignOutAltSolid, LiaUserSolid } from 'react-icons/lia';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import LoginModal from './LoginModal';
+import { RxExit } from 'react-icons/rx';
+import { setToken } from 'Frontend/storage/authSlice';
 
 function NavBar() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    const token = useSelector((state: RootState) => state.auth.token);
+    const token:string|null = useSelector((state: RootState) => state.auth.token);
     const isActive = (pathname: string) => location.pathname === pathname;
-    
+    console.log(token)
     const [modalShow, setModalShow] = useState<boolean>(false);
     const checkLogin = () =>{
         if(token){
@@ -19,6 +22,10 @@ function NavBar() {
         }else{
             setModalShow(true);
         }
+    }
+    const logout = async() =>{
+        dispatch(setToken(null));
+        navigate("/")
     }
 
   return (
@@ -29,7 +36,7 @@ function NavBar() {
         />
         <Navbar expand="md" variant="dark" bg="dark" className="custom-navbar" aria-label="Stylez navigation bar">
             <Container>
-                <Navbar.Brand href="index.html">
+                <Navbar.Brand onClick={()=>navigate("/")}>
                 Stylez<span>.</span>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarsStylez" />
@@ -48,6 +55,11 @@ function NavBar() {
                     <Nav.Link onClick={()=>navigate("/cart")} className={isActive("/cart") ? "active" : ""}>
                         <LiaShoppingCartSolid size={30}/>
                     </Nav.Link>
+                    {token &&
+                        <Nav.Link onClick={logout}>
+                            <LiaSignOutAltSolid size={30}/>
+                        </Nav.Link>
+                    }
                 </Nav>
                 </Navbar.Collapse>
             </Container>
