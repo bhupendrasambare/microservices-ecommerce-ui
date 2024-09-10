@@ -1,11 +1,15 @@
 .seller-sidebar {
-    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 170px;
     min-height: 100vh;
     transition: width 0.3s;
+    z-index: 1000;
 }
 
 .seller-sidebar.collapsed {
-    width: 80px;
+    width: 60px;
 }
 
 .seller-sidebar-header {
@@ -15,25 +19,175 @@
 
 .seller-toggle-btn {
     width: 100%;
+    columns: #000000;
     background-color: transparent !important;
     justify-content: start;
-    margin-left: -35px;
+    margin-left: -25px;
     border: none !important;
 }
 
 .seller-content {
-    flex-grow: 1;
+    margin-left: 170px;
+    padding: 0;
+    width: calc(100% - 170px);
+    transition: margin-left 0.3s ease;
 }
-
+.seller-sidebar.collapsed + .seller-content {
+    margin-left: 70px;
+    width: calc(100% - 70px);
+}
 .seller-nav-link {
     padding: 10px 20px !important;
-    color: #919191 !important;
+    color: #202020 !important;
 }
 
 .seller-nav-link.active {
-    color: #ffffff !important;
+    color: #000000 !important;
 }
 
 .seller-nav-link:hover {
-    color: #ffffff !important;
+    color: #000000 !important;
+}
+
+.seller-nav-link-up {
+    padding: 10px 10px !important;
+    color: #202020 !important;
+}
+
+.seller-nav-link-up.active {
+    color: #000000 !important;
+}
+
+.seller-nav-link-up:hover {
+    color: #000000 !important;
+}
+.seller-child-content{
+    margin-left: 10px;
+    height: calc(100vh - 110px); 
+    scrollbar-width: none;
+    overflow-y: scroll; 
+    padding: 0px 20px;
+}
+.seller-footer{
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 14px;
+    height: 30px;
+    background-color: #ffffff;
+}
+.seller-position-relative {
+    position: relative;
+}
+
+.seller-notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.75rem;
+    line-height: 1;
+    display: inline-block;
+    min-width: 1.5rem;
+    text-align: center;
+    vertical-align: middle;
+    color: red;
+    font-weight: 900;
+}
+@media (max-width: 576px) { /* Adjust the max-width based on your mobile view breakpoint */
+    .pagination .pagination-first,
+    .pagination .pagination-last {
+      display: none;
+    }
+  }
+
+  #notfound {
+    height: 100vh;
+}
+
+#notfound .notfound {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+}
+
+.notfound {
+    max-width: 410px;
+    width: 100%;
+    text-align: center;
+}
+
+.notfound .notfound-404 {
+    height: 280px;
+    position: relative;
+    z-index: -1;
+}
+
+.notfound .notfound-404 h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 230px;
+    margin: 0px;
+    font-weight: 700;
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+    background: url("Frontend/assets/images/not-found.jpg") no-repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: cover;
+    background-position: center;
+}
+
+
+.notfound h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #000;
+    font-size: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 0;
+}
+
+.notfound p {
+    font-family: 'Montserrat', sans-serif;
+    color: #000;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+.notfound a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    background: #444444;
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 40px;
+    color: #fff;
+    font-weight: 700;
+    -webkit-box-shadow: 0px 4px 15px -5px #0046d5;
+            box-shadow: 0px 4px 15px -5px #0046d5;
+}
+
+
+@media only screen and (max-width: 767px) {
+    .notfound .notfound-404 {
+        height: 142px;
+    }
+    .notfound .notfound-404 h1 {
+        font-size: 112px;
+    }
+}
+
+.cursor-pointer{
+    cursor: pointer;
 }

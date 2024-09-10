@@ -8,6 +8,8 @@ import Services from 'Frontend/pages/home/Services';
 import ContactPage from 'Frontend/pages/home/ContactPage';
 import Cart from 'Frontend/pages/home/Cart';
 import Sellerindex from 'Frontend/pages/seller/Sellerindex'
+import SellerNotFoundPage from './pages/seller/SellerNotFoundPage';
+import SellerProductPage from './pages/seller/SellerProductPage';
 
 const routes: RouteObject[] = [
   { path: '/', element: <Home /> },
@@ -19,6 +21,8 @@ const routes: RouteObject[] = [
   { path: '*', element: <NotFound /> },
 
   { path: '/seller/', element: <Sellerindex /> },
+  { path: '/seller/*', element: <SellerNotFoundPage /> },
+  { path: '/seller/products', element: <SellerProductPage /> },
   ];
   
   const router = createBrowserRouter(routes);
