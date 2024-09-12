@@ -2,10 +2,14 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 170px;
+    width: 150px;
     min-height: 100vh;
     transition: width 0.3s;
     z-index: 1000;
+    background: #3b5d50;
+}
+.seller-content-nav{
+    background: #3b5d50 !important;
 }
 
 .seller-sidebar.collapsed {
@@ -27,46 +31,46 @@
 }
 
 .seller-content {
-    margin-left: 170px;
+    margin-left: 60px;
     padding: 0;
-    width: calc(100% - 170px);
+    width: calc(100% - 60px);
     transition: margin-left 0.3s ease;
 }
-.seller-sidebar.collapsed + .seller-content {
-    margin-left: 70px;
-    width: calc(100% - 70px);
-}
+/* .seller-sidebar.collapsed + .seller-content {
+    margin-left: 60px;
+} */
 .seller-nav-link {
     padding: 10px 20px !important;
-    color: #202020 !important;
+    color: #ffffff !important;
 }
 
 .seller-nav-link.active {
-    color: #000000 !important;
+    color: #000 !important;
 }
 
 .seller-nav-link:hover {
-    color: #000000 !important;
+    color: #000 !important;
 }
 
 .seller-nav-link-up {
     padding: 10px 10px !important;
-    color: #202020 !important;
+    color: #ffffff !important;
 }
 
 .seller-nav-link-up.active {
-    color: #000000 !important;
+    color: #000 !important;
 }
 
 .seller-nav-link-up:hover {
-    color: #000000 !important;
+    color: #000 !important;
 }
 .seller-child-content{
-    margin-left: 10px;
+    padding: 0px 10px;
     height: calc(100vh - 110px); 
     scrollbar-width: none;
     overflow-y: scroll; 
     padding: 0px 20px;
+    margin-top: 20px;
 }
 .seller-footer{
     position: relative;
@@ -190,4 +194,42 @@
 
 .cursor-pointer{
     cursor: pointer;
+}
+.custom-pagination .page-item {
+    color: black;
+}
+  
+.custom-pagination .page-item.disabled .page-link {
+color: black;
+background-color: #ffffff; 
+border-color: #ffffff;
+}
+  
+.custom-pagination .page-link {
+    color: black;
+    background-color: rgb(255, 255, 255); /* Gray background for normal state */
+}
+  
+  .custom-pagination .page-link:hover {
+    background-color: #e2e6ea; /* Slightly darker gray on hover */
+    color: black;
+  }
+  
+  .custom-pagination .page-item.active .page-link {
+    background-color: #dedddd; /* Bootstrap primary color */
+    border-color: #dedddd; /* Bootstrap primary color */
+    color: rgb(0, 0, 0);
+  }
+  
+  .custom-pagination .pagination-first,
+  .custom-pagination .pagination-last {
+    color: black;
+  }
+  
+.seller-navbar-icon{
+    color: #fff;
+}
+
+.seller-navbar-icon:hover, .seller-navbar-icon.active{
+    color: #131313 !important;
 }

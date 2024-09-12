@@ -19,24 +19,24 @@ const SidebarComponent: React.FC<SidebarComponentProps> = ({ children }) => {
   const handleToggle = () => setCollapsed(!collapsed);
 
   const isActive = (pathname: string) => location.pathname === pathname;
-
+  
   return (
-    <div className="d-flex">
+    <div className="d-flex seller-outer-component">
       {/* Sidebar */}
-      <div className={`seller-sidebar bg-light  shadow-lg ${collapsed ? 'collapsed' : ''}`}>
+      <div className={`seller-sidebar  shadow-lg ${collapsed ? 'collapsed' : ''}`}>
         <div className="seller-sidebar-header">
           <Button variant="light" onClick={handleToggle} className="seller-toggle-btn">
             {(collapsed)?
-                <AiOutlineMenu color='black' size={24} className='seller-toggle-icon' />:
-                <AiOutlineClose color='black' size={24} className='seller-toggle-icon' />
+                <AiOutlineMenu color='black' size={24} className='seller-toggle-icon text-light' />:
+                <><AiOutlineClose color='black' size={24} className='seller-toggle-icon text-light' /></>
             }
           </Button>
         </div>
         <Nav className="flex-column">
-          <Nav.Link as={Link} to="/seller/" className={isActive("/seller/") ? "active seller-nav-link" : "seller-nav-link"}>
+          <Nav.Link as={Link} to="/seller/" className={isActive("/seller/") ? "active seller-nav-link" : "seller-nav-link text-light"}>
             <AiOutlineHome size={20} className="me-2" /> {!collapsed && "Home"}
           </Nav.Link>
-          <Nav.Link as={Link} to="/seller/products" className={isActive("/seller/products") ? "active seller-nav-link" : "seller-nav-link"}>
+          <Nav.Link as={Link} to="/seller/products" className={isActive("/seller/products") ? "active seller-nav-link" : "seller-nav-link text-light"}>
             <AiOutlineProduct size={20} className="me-2" /> {!collapsed && "Products"}
           </Nav.Link>
           <Nav.Link as={Link} to="/seller/orders" className={isActive("/seller/orders") ? "active seller-nav-link" : "seller-nav-link"}>
@@ -45,9 +45,9 @@ const SidebarComponent: React.FC<SidebarComponentProps> = ({ children }) => {
           <Nav.Link as={Link} to="/seller/reviews" className={isActive("/seller/reviews") ? "active seller-nav-link" : "seller-nav-link"}>
             <MdOutlineReviews size={20} className="me-2" /> {!collapsed && "Reviews"}
           </Nav.Link>
-          <Nav.Link as={Link} to="/seller/profile" className={isActive("/seller/profile") ? "active seller-nav-link" : "seller-nav-link"}>
+          {/* <Nav.Link as={Link} to="/seller/profile" className={isActive("/seller/profile") ? "active seller-nav-link" : "seller-nav-link"}>
             <AiOutlineUser size={20} className="me-2" /> {!collapsed && "Profile"}
-          </Nav.Link>
+          </Nav.Link> */}
           <Nav.Link as={Link} to="/seller/settings" className={isActive("/seller/settings") ? "active seller-nav-link" : "seller-nav-link"}>
             <AiOutlineSetting size={20} className="me-2" /> {!collapsed && "Settings"}
           </Nav.Link>
@@ -56,18 +56,16 @@ const SidebarComponent: React.FC<SidebarComponentProps> = ({ children }) => {
 
       {/* Main Content */}
       <div className="seller-content">
-        <Navbar expand="sm" variant="light" bg="light" aria-label="Stylez navigation bar shadow-lg">
+        <Navbar expand="sm" variant="light" bg="light" className='seller-content-nav' aria-label="Stylez navigation bar shadow-lg">
             
             <Container>
             <Nav className=" flex-row w-100">
               <div className="d-flex justify-content-between w-100">
                 <div className="">
-                  <Nav.Link className="px-0 pt-2 fw-bold fs-3 active">
-                    Stylez<span>.</span>
-                  </Nav.Link>
+                  <Nav.Link className="px-0 pt-2 fw-bold fs-3 active text-light"> Stylez<span className='text-secondary'>.</span> </Nav.Link>
                 </div>
                 <div className="d-flex justify-content-end">
-                    <Nav.Link className={isActive("/seller/account") ? "active seller-nav-link-up" : "seller-nav-link-up"}>
+                    <Nav.Link onClick={() => navigate("/seller/account")} className={isActive("/seller/account") ? "seller-nav-link-up active" : "seller-nav-link-up"}>
                         <LiaUserSolid size={25} />
                     </Nav.Link>
                     <Nav.Link onClick={() => navigate("/seller/notifications")} className={isActive("/seller/notifications") ? "active seller-nav-link-up" : "seller-nav-link-up"}>

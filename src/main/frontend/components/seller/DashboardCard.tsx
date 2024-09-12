@@ -5,19 +5,20 @@ interface DashboardCardProps {
     title:string;
     description:string;
     value:string;
+    theme:string;
 }
 
-const DashboardCard: React.FC<DashboardCardProps> = ({ title,description,value }) => {
+const DashboardCard: React.FC<DashboardCardProps> = ({ title,description,value,theme }) => {
   return (
     <div>
-        <Card style={{ width: '18rem' }} className='my-2'>
+        <Card style={{ width: '18rem' }} className={'my-2 text-'+theme}>
             <Card.Body>
                 <div className="d-flex justify-content-between w-100 bottom-0">
                     <div className="">
-                        <Card.Title>{title}</Card.Title>
+                        <div className='fw-bold pb-2 fs-4'>{title}</div>
                         <Card.Subtitle className="mb-2 text-muted">{description}</Card.Subtitle>
                     </div>
-                    <div className="fs-2 fw-bold text-secondary">
+                    <div className={"fs-2 fw-bold text"+theme}>
                         {value}
                     </div>
                 </div>

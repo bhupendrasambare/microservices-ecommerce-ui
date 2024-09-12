@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Table, Pagination, Form, Container, Row, Col, Button } from 'react-bootstrap';
-import { LiaPenAltSolid } from 'react-icons/lia';
+import { LiaPenAltSolid, LiaPlusCircleSolid, LiaPlusSolid } from 'react-icons/lia';
 import { MdDelete } from 'react-icons/md';
 
 interface SellerProductsProps {
@@ -23,7 +23,7 @@ const data = Array.from({ length: 100 }, (_, index) => ({
 
 const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top }) => {
     const [currentPage, setCurrentPage] = useState(1);
-    const [pageSize, setPageSize] = useState(10);
+    const [pageSize, setPageSize] = useState(5);
   
     const totalPages = Math.ceil(data.length / pageSize);
   
@@ -52,6 +52,12 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
         </Pagination.Item>
         );
     }
+
+    const handleAddProductClick = () => {
+        // Handle the click event here
+        console.log('Add Product clicked');
+        // You can navigate to another page or show a modal here
+      };
   
     return (
       <Container className='shadow bg-light py-2 rounded-3 my-2'>
@@ -68,8 +74,19 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
             </Form.Select>
           </Col>
         </Row>
-        <div className="d-flex w-100 justify-content-end">
-        </div>
+        {
+          addProduct &&
+
+            <div className="d-flex w-100 justify-content-end">
+              <div
+                  className="border-dark border-2 border rounded-5 px-2 my-2 border-bold"
+                  onClick={handleAddProductClick}
+                  style={{ cursor: 'pointer' }} // Optional: change cursor to pointer to indicate it's clickable
+                  >
+                  <LiaPlusCircleSolid size={20} /> Add Product
+              </div>
+            </div>
+        }
   
         <Table striped bordered hover responsive >
           <thead>
@@ -82,7 +99,7 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
               <th>Category</th>
               <th>Status</th>
               {
-                addProduct?
+                editable?
                 <th>Actions</th>:<></>
               }
             </tr>
@@ -98,7 +115,7 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
                 <td>{item.category}</td>
                 <td>{item.status}</td>
               {
-                addProduct?
+                editable?
                 <td>
                   <div className="d-flex">
                     <LiaPenAltSolid size={20} className='mx-1'/>
@@ -112,13 +129,13 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
         </Table>
   
         {/* Pagination */}
-        <Pagination>
+        <Pagination className="custom-pagination">
             <Pagination.First className="pagination-first" onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
-            <Pagination.Prev onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
+            <Pagination.Prev className="pagination-prev" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
             
             {pages}
             
-            <Pagination.Next onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} />
+            <Pagination.Next className="pagination-next" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} />
             <Pagination.Last className="pagination-last" onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} />
         </Pagination>
       </Container>
