@@ -1,12 +1,6 @@
+import { DashboardCardProps } from 'Frontend/inteface/seller/UiProps'
 import React from 'react'
 import { Card } from 'react-bootstrap'
-
-interface DashboardCardProps {
-    title:string;
-    description:string;
-    value:string;
-    theme:string;
-}
 
 const DashboardCard: React.FC<DashboardCardProps> = ({ title,description,value,theme }) => {
   return (

@@ -1,14 +1,11 @@
 import React from 'react'
 import Couch from 'Frontend/assets/web/couch.png'
 import { useNavigate } from 'react-router-dom';
+import { HeroSectionProp } from 'Frontend/inteface/home/UiProps';
 
-interface ChildProps {
-    title: string; 
-    description: string; 
-    showButton:boolean
-}
 
-const HeroSection: React.FC<ChildProps> = ({ title,description,showButton }) => {
+
+const HeroSection: React.FC<HeroSectionProp> = ({ title,description,showButton }) => {
     const navigate = useNavigate();
 
   return (

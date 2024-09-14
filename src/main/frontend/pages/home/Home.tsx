@@ -6,9 +6,9 @@ import BestSelles from 'Frontend/components/home/BestSelles';
 import Testmonials from 'Frontend/components/home/Testmonials';
 import NavBar from 'Frontend/components/home/NavBar';
 import Footer from 'Frontend/components/home/Footer';
-import "../../style/index.css"
-import "../../style/index.scss"
-import "../../style/login.css"
+import "Frontend/style/index.css"
+import "Frontend/style/index.scss"
+import "Frontend/style/login.css"
 
 function Home() {
   return (

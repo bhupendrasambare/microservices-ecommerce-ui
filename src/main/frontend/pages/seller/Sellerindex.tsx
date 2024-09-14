@@ -12,7 +12,7 @@ function Sellerindex() {
                 <div className="row mt-3">
                     <Row>
                         <Col xs={12} sm={6} lg={3} className="mb-4">
-                            <DashboardCard theme='success' title="Products" description="Active products" value="11" />
+                            <DashboardCard theme='info' title="Products" description="Active products" value="11" />
                         </Col>
                         <Col xs={12} sm={6} lg={3} className="mb-4">
                             <DashboardCard theme='warning' title="Revenue" description="Total earning" value="1,35K $" />

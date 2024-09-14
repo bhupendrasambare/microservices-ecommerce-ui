@@ -1,18 +1,15 @@
+import { SellerProductsProps } from 'Frontend/inteface/seller/UiProps';
 import React, { useState } from 'react';
 import { Table, Pagination, Form, Container, Row, Col, Button } from 'react-bootstrap';
 import { LiaPenAltSolid, LiaPlusCircleSolid, LiaPlusSolid } from 'react-icons/lia';
 import { MdDelete } from 'react-icons/md';
 
-interface SellerProductsProps {
-    editable:boolean;
-    addProduct:boolean;
-    top:boolean;
-}
 
 
 // Dummy data for the table
 const data = Array.from({ length: 100 }, (_, index) => ({
   id: index + 1,
+  image: `https://picsum.photos/200/200?random=${index + 1}`,
   name: `Item ${index + 1}`,
   description: `Description for item ${index + 1}`,
   price: `${index + 1} $`,
@@ -63,7 +60,7 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
       <Container className='shadow bg-light py-2 rounded-3 my-2'>
         <Row className="my-3">
           <Col>
-            <h4>{(top)?"Top Products":"Products"}</h4>
+            <h4 className='fw-bold'>{(top)?"Top Products":"Products"}</h4>
           </Col>
           <Col className="text-end">
             <Form.Select value={pageSize} onChange={handlePageSizeChange} style={{ width: 'auto', display: 'inline-block' }}>
@@ -91,7 +88,7 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
         <Table striped bordered hover responsive >
           <thead>
             <tr>
-              <th>ID</th>
+              <th>Image</th>
               <th>Name</th>
               <th>Description</th>
               <th>Price</th>
@@ -107,7 +104,7 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
           <tbody>
             {currentPageData.map((item) => (
               <tr key={item.id}>
-                <td>{item.id}</td>
+                <td className='d-flex justify-content-center'><img className='rounded-3 shadow' width={50} src={item.image} /></td>
                 <td>{item.name}</td>
                 <td>{item.description}</td>
                 <td>{item.price}</td>

@@ -7,10 +7,9 @@ import { AiOutlineHome, AiOutlineUser, AiOutlineSetting } from 'react-icons/ai';
 import { LiaBell, LiaSignOutAltSolid, LiaUserSolid } from 'react-icons/lia';
 import { MdOutlineReviews } from 'react-icons/md';
 import { TbTruckDelivery } from 'react-icons/tb';
+import { SidebarComponentProps } from 'Frontend/inteface/seller/UiProps';
 
-interface SidebarComponentProps {
-  children: ReactNode;
-}
+
 
 const SidebarComponent: React.FC<SidebarComponentProps> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(true);

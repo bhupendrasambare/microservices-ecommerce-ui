@@ -7,11 +7,9 @@ import { Modal } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import config from 'Frontend/config';
+import { MyVerticallyCenteredModalProps } from 'Frontend/inteface/home/UiProps';
 
-interface MyVerticallyCenteredModalProps {
-    show: boolean;
-    onHide: () => void;
-}
+
 
 const LoginModal: React.FC<MyVerticallyCenteredModalProps> = (props) => {
     const token = useSelector((state: RootState) => state.auth.token);
