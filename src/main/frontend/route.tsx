@@ -26,7 +26,8 @@ const routes: RouteObject[] = [
   { path: '/seller/*', element: <SellerNotFoundPage /> },
   { path: '/seller/products', element: <SellerProductPage /> },
   { path: '/seller/reviews', element: <SellerReviewsPage /> },
-  { path: '/seller/account', element: <SellerUser /> },
+  { path: '/seller/account', element: <SellerUser tabs='Overview' /> },
+  { path: '/seller/settings', element: <SellerUser tabs='Password' /> },
   ];
   
   const router = createBrowserRouter(routes);

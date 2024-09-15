@@ -46,6 +46,8 @@
 
 .seller-nav-link.active {
     color: #000 !important;
+    background-color: #dedddd;
+    width: calc(100% - 1px);
 }
 
 .seller-nav-link:hover {
@@ -59,6 +61,8 @@
 
 .seller-nav-link-up.active {
     color: #000 !important;
+    background-color: #dedddd;
+    border-radius: 10px;
 }
 
 .seller-nav-link-up:hover {
