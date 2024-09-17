@@ -8,10 +8,11 @@ import Services from 'Frontend/pages/home/Services';
 import ContactPage from 'Frontend/pages/home/ContactPage';
 import Cart from 'Frontend/pages/home/Cart';
 import Sellerindex from 'Frontend/pages/seller/Sellerindex'
-import SellerNotFoundPage from './pages/seller/SellerNotFoundPage';
-import SellerProductPage from './pages/seller/SellerProductPage';
-import SellerReviewsPage from './pages/seller/SellerReviewsPage';
-import SellerUser from './pages/seller/SellerUser';
+import SellerNotFoundPage from 'Frontend/pages/seller/SellerNotFoundPage';
+import SellerProductPage from 'Frontend/pages/seller/SellerProductPage';
+import SellerReviewsPage from 'Frontend/pages/seller/SellerReviewsPage';
+import SellerUser from 'Frontend/pages/seller/SellerUser';
+import Login from 'Frontend/pages/seller/Login';
 
 const routes: RouteObject[] = [
   { path: '/', element: <Home /> },
@@ -28,6 +29,7 @@ const routes: RouteObject[] = [
   { path: '/seller/reviews', element: <SellerReviewsPage /> },
   { path: '/seller/account', element: <SellerUser tabs='Overview' /> },
   { path: '/seller/settings', element: <SellerUser tabs='Password' /> },
+  { path: '/seller/login', element: <Login /> }
   ];
   
   const router = createBrowserRouter(routes);
