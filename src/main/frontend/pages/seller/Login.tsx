@@ -1,8 +1,9 @@
 import { LoginForm } from '@vaadin/react-components'
 import axios from 'axios';
 import config from 'Frontend/config';
+import { CREATE_TOKEN, LOGIN_URL, VALIDATE_URL } from 'Frontend/constants/urls';
 import { RootState } from 'Frontend/storage';
-import { setToken } from 'Frontend/storage/authSlice';
+import { setToken, setUser } from 'Frontend/storage/authSlice';
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +18,7 @@ function Login() {
     const handleSetToken = (email: string, password: string) => {
         setErrorMessage(undefined);
         axios({
-            url: config.baseUrl + '/auth/login',
+            url: LOGIN_URL,
             method: 'POST',
             data: {
                 email: email,   // Changed "username" to "email"
@@ -29,6 +30,19 @@ function Login() {
                 const resData: any = res.data.data;
                 const tokenString: string = resData;
                 dispatch(setToken(tokenString));
+                try{
+                    axios({
+                        url: VALIDATE_URL,
+                        headers:{
+                            Authorization: CREATE_TOKEN(tokenString)
+                        }
+                    })
+                    .then(async(userResponse) => {
+                        dispatch(setUser(userResponse.data.data));
+                    })
+                }catch(e:any){
+        
+                }
                 navigate('/seller/account');
             } else {
                 setErrorMessage(true);
@@ -51,7 +65,7 @@ function Login() {
 
     const i18n = {
         form: {
-          title: 'Login',
+          title: 'Seller Login',
           username: 'Email',
           password: 'Password',
           submit: 'Sign In',
@@ -66,7 +80,7 @@ function Login() {
     };
 
   return (
-    <div className='bg-dark h-100 d-flex justify-content-center align-items-center'>
+    <div className='seller-login-page'>
         <div className="seller-login-rich-content">
             <LoginForm
             onLogin={login}

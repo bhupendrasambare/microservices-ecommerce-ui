@@ -3,22 +3,30 @@ import React, { ReactNode, useState } from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineClose, AiOutlineMenu, AiOutlineProduct } from 'react-icons/ai';
-import { AiOutlineHome, AiOutlineUser, AiOutlineSetting } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineSetting } from 'react-icons/ai';
 import { LiaBell, LiaSignOutAltSolid, LiaUserSolid } from 'react-icons/lia';
 import { MdOutlineReviews } from 'react-icons/md';
 import { TbTruckDelivery } from 'react-icons/tb';
 import { SidebarComponentProps } from 'Frontend/inteface/seller/UiProps';
+import { setUser } from 'Frontend/storage/authSlice';
+import { useDispatch } from 'react-redux';
 
 
 
 const SidebarComponent: React.FC<SidebarComponentProps> = ({ children }) => {
   const [collapsed, setCollapsed] = useState(true);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleToggle = () => setCollapsed(!collapsed);
 
   const isActive = (pathname: string) => location.pathname === pathname;
   
+  const logout = ()=>{
+    dispatch(setUser(null));
+    navigate("/seller/login")
+  }
+
   return (
     <div className="d-flex seller-outer-component">
       {/* Sidebar */}
@@ -74,7 +82,7 @@ const SidebarComponent: React.FC<SidebarComponentProps> = ({ children }) => {
                         </div>
                     </Nav.Link>
                     <Nav.Link className="seller-nav-link-up">
-                        <LiaSignOutAltSolid size={25}/>
+                        <LiaSignOutAltSolid size={25} onClick={logout}/>
                     </Nav.Link>
                 </div>
               </div>

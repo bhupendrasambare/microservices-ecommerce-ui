@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import config from 'Frontend/config';
 import { MyVerticallyCenteredModalProps } from 'Frontend/inteface/home/UiProps';
+import { LOGIN_URL } from 'Frontend/constants/urls';
 
 
 
@@ -21,7 +22,7 @@ const LoginModal: React.FC<MyVerticallyCenteredModalProps> = (props) => {
     const handleSetToken = (email: string, password: string) => {
         setErrorMessage(undefined);
         axios({
-            url: config.baseUrl + '/auth/login',
+            url: LOGIN_URL,
             method: 'POST',
             data: {
                 email: email,   // Changed "username" to "email"

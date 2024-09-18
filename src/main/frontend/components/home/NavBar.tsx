@@ -4,8 +4,7 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 import { LiaShoppingCartSolid, LiaSignOutAltSolid, LiaUserSolid } from 'react-icons/lia';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import LoginModal from './LoginModal';
-import { RxExit } from 'react-icons/rx';
+import LoginModal from 'Frontend/components/home/LoginModal';
 import { setToken } from 'Frontend/storage/authSlice';
 
 function NavBar() {

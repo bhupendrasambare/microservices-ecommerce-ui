@@ -1,7 +1,13 @@
+import { RootState } from 'Frontend/storage';
 import React from 'react'
 import { LiaFacebook, LiaLinkedin, LiaTwitter, LiaYoutube } from 'react-icons/lia'
+import { useSelector } from 'react-redux';
 
 function SellerProfileCard() {
+
+    const userData:any|null = useSelector((state: RootState) => state.auth.user);
+    console.log(userData)
+
   return (
     <div>
             <div className="row gy-4">
@@ -10,7 +16,7 @@ function SellerProfileCard() {
                         <div className="card-header text-bg-primary">Welcome, Ethan Leo</div>
                         <div className="card-body">
                             <div className="text-center mb-3">
-                            <img src="https://picsum.photos/200?random=1" className="img-fluid rounded-circle" alt="Luna John"/>
+                            <img src={"localhost:9001/users/files/retrieve/ms_20240904001051756.jpg"} className="img-fluid rounded-circle" alt="Luna John"/>
                             </div>
                             <h5 className="text-center mb-1">Ethan Leo</h5>
                             <p className="text-center text-secondary mb-4">Hardware seller</p>

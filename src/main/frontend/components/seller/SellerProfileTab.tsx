@@ -96,43 +96,43 @@ const SellerProfileTab: React.FC<SellerProfileTabProps> = ({ tabs }) => {
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputFirstName" className="form-label">First Name</label>
-                            <input type="text" className="form-control" id="inputFirstName" value="Ethan"/>
+                            <input type="text" className="form-control" id="inputFirstName" defaultValue="Ethan"/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputLastName" className="form-label">Last Name</label>
-                            <input type="text" className="form-control" id="inputLastName" value="Leo"/>
+                            <input type="text" className="form-control" id="inputLastName" defaultValue="Leo"/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputEducation" className="form-label">Education</label>
-                            <input type="text" className="form-control" id="inputEducation" value="M.S Computer Science"/>
+                            <input type="text" className="form-control" id="inputEducation" defaultValue="M.S Computer Science"/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputSkills" className="form-label">Skills</label>
-                            <input type="text" className="form-control" id="inputSkills" value="HTML, SCSS, Javascript, React, Vue, Angular, UI, UX"/>
+                            <input type="text" className="form-control" id="inputSkills" defaultValue="HTML, SCSS, Javascript, React, Vue, Angular, UI, UX"/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputJob" className="form-label">Job</label>
-                            <input type="text" className="form-control" id="inputJob" value="Project Manager"/>
+                            <input type="text" className="form-control" id="inputJob" defaultValue="Project Manager"/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputCompany" className="form-label">Company</label>
-                            <input type="text" className="form-control" id="inputCompany" value="GitHub Inc"/>
+                            <input type="text" className="form-control" id="inputCompany" defaultValue="GitHub Inc"/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputPhone" className="form-label">Phone</label>
-                            <input type="tel" className="form-control" id="inputPhone" value="+12486798745"/>
+                            <input type="tel" className="form-control" id="inputPhone" defaultValue="+12486798745"/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputEmail" className="form-label">Email</label>
-                            <input type="email" className="form-control" id="inputEmail" value="leo@example.com"/>
+                            <input type="email" className="form-control" id="inputEmail" defaultValue="leo@example.com"/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputAddress" className="form-label">Address</label>
-                            <input type="text" className="form-control" id="inputAddress" value="Mountain View, California"/>
+                            <input type="text" className="form-control" id="inputAddress" defaultValue="Mountain View, California"/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputCountry" className="form-label">Country</label>
-                            <select className="form-select" id="inputCountry">
+                            <select className="form-select" id="inputCountry" defaultValue={"United States"} onChange={()=>{}}>
                             <option value="Afghanistan">Afghanistan</option>
                             <option value="Åland Islands">Åland Islands</option>
                             <option value="Albania">Albania</option>
@@ -363,7 +363,7 @@ const SellerProfileTab: React.FC<SellerProfileTabProps> = ({ tabs }) => {
                             <option value="Ukraine">Ukraine</option>
                             <option value="United Arab Emirates">United Arab Emirates</option>
                             <option value="United Kingdom">United Kingdom</option>
-                            <option value="United States" selected>United States</option>
+                            <option value="United States">United States</option>
                             <option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
                             <option value="Uruguay">Uruguay</option>
                             <option value="Uzbekistan">Uzbekistan</option>
@@ -381,23 +381,23 @@ const SellerProfileTab: React.FC<SellerProfileTabProps> = ({ tabs }) => {
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputYouTube" className="form-label">YouTube</label>
-                            <input type="text" className="form-control" id="inputYouTube" value="https://www.youtube.com/EthanLeo"/>
+                            <input type="text" className="form-control" id="inputYouTube" defaultValue="https://www.youtube.com/EthanLeo"/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputX" className="form-label">X</label>
-                            <input type="text" className="form-control" id="inputX" value="https://twitter.com/EthanLeo"/>
+                            <input type="text" className="form-control" id="inputX" defaultValue="https://twitter.com/EthanLeo"/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputFacebook" className="form-label">Facebook</label>
-                            <input type="text" className="form-control" id="inputFacebook" value="https://www.facebook.com/EthanLeo"/>
+                            <input type="text" className="form-control" id="inputFacebook" defaultValue="https://www.facebook.com/EthanLeo"/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputLinkedIn" className="form-label">LinkedIn</label>
-                            <input type="text" className="form-control" id="inputLinkedIn" value="https://www.linkedin.com/EthanLeo"/>
+                            <input type="text" className="form-control" id="inputLinkedIn" defaultValue="https://www.linkedin.com/EthanLeo"/>
                         </div>
                         <div className="col-12">
                             <label htmlFor="inputAbout" className="form-label">About</label>
-                            <textarea className="form-control" id="inputAbout">Ethan Leo is a seasoned and results-driven Project Manager who brings experience and expertise to project management. With a proven track record of successfully delivering complex projects on time and within budget, Ethan Leo is the go-to professional for organizations seeking efficient and effective project leadership.</textarea>
+                            <textarea className="form-control" id="inputAbout" defaultValue={"Ethan Leo is a seasoned and results-driven Project Manager who brings experience and expertise to project management. With a proven track record of successfully delivering complex projects on time and within budget, Ethan Leo is the go-to professional for organizations seeking efficient and effective project leadership."}></textarea>
                         </div>
                         <div className="col-12">
                             <button type="submit" className="btn btn-primary">Save Changes</button>

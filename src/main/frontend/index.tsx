@@ -3,11 +3,11 @@ import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
 import 'bootstrap/dist/css/bootstrap.css';
 import 'tiny-slider/dist/tiny-slider.css';
-import './themes/microservices-ecommerce-ui/styles.css';
-import './themes/microservices-ecommerce-ui/styles.scss'
-import { persistor, store } from "./storage";
+import 'Frontend/themes/microservices-ecommerce-ui/styles.css';
+import 'Frontend/themes/microservices-ecommerce-ui/styles.scss'
+import { persistor, store } from "Frontend/storage";
 import { PersistGate } from "redux-persist/integration/react";
-import App from "./app";
+import App from "Frontend/app";
 
 const container = document.getElementById("outlet")
 
