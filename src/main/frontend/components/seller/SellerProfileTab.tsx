@@ -1,10 +1,15 @@
+import { CREATE_URL } from 'Frontend/constants/urls'
 import { SellerProfileTabProps } from 'Frontend/inteface/seller/UiProps'
+import { RootState } from 'Frontend/storage'
 import React from 'react'
 import { Tab, Tabs } from 'react-bootstrap'
 import { BiTrash, BiUpload } from 'react-icons/bi'
+import { useSelector } from 'react-redux'
 
 
 const SellerProfileTab: React.FC<SellerProfileTabProps> = ({ tabs }) => {
+    const userData:any|null = useSelector((state: RootState) => state.auth.user);
+
   return (
     <div>
         <div className="tab-content pt-4" id="profileTabContent">
@@ -16,62 +21,62 @@ const SellerProfileTab: React.FC<SellerProfileTabProps> = ({ tabs }) => {
                 <Tab eventKey="Overview" title="Overview">
                     <div className="tab-pane">
                         <h5 className="mb-3">About</h5>
-                        <p className="lead mb-3">Ethan Leo is a seasoned and results-driven Project Manager who brings experience and expertise to project management. With a proven track record of successfully delivering complex projects on time and within budget, Ethan Leo is the go-to professional for organizations seeking efficient and effective project leadership.</p>
+                        <p className="lead mb-3">{userData?.about}</p>
                         <h5 className="mb-3">Profile</h5>
                         <div className="row g-0">
                         <div className="col-5 col-md-3 bg-light border-bottom border-white border-3">
                             <div className="p-2">First Name</div>
                         </div>
                         <div className="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
-                            <div className="p-2">Ethan</div>
+                            <div className="p-2">{userData?.firstName}</div>
                         </div>
                         <div className="col-5 col-md-3 bg-light border-bottom border-white border-3">
                             <div className="p-2">Last Name</div>
                         </div>
                         <div className="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
-                            <div className="p-2">Leo</div>
+                            <div className="p-2">{userData?.lastName}</div>
                         </div>
                         <div className="col-5 col-md-3 bg-light border-bottom border-white border-3">
-                            <div className="p-2">Education</div>
+                            <div className="p-2">Title</div>
                         </div>
                         <div className="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
-                            <div className="p-2">M.S Computer Science</div>
-                        </div>
-                        <div className="col-5 col-md-3 bg-light border-bottom border-white border-3">
-                            <div className="p-2">Address</div>
-                        </div>
-                        <div className="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
-                            <div className="p-2">Mountain View, California</div>
+                            <div className="p-2">{userData?.title}</div>
                         </div>
                         <div className="col-5 col-md-3 bg-light border-bottom border-white border-3">
                             <div className="p-2">Country</div>
                         </div>
                         <div className="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
-                            <div className="p-2">United States</div>
+                            <div className="p-2">{userData?.city?.state?.country?.name}</div>
                         </div>
                         <div className="col-5 col-md-3 bg-light border-bottom border-white border-3">
-                            <div className="p-2">Job</div>
+                            <div className="p-2">State</div>
                         </div>
                         <div className="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
-                            <div className="p-2">Project Manager</div>
+                            <div className="p-2">{userData?.city?.state?.name}</div>
+                        </div>
+                        <div className="col-5 col-md-3 bg-light border-bottom border-white border-3">
+                            <div className="p-2">City</div>
+                        </div>
+                        <div className="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
+                            <div className="p-2">{userData?.city?.name}</div>
                         </div>
                         <div className="col-5 col-md-3 bg-light border-bottom border-white border-3">
                             <div className="p-2">Company</div>
                         </div>
                         <div className="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
-                            <div className="p-2">GitHub Inc</div>
+                            <div className="p-2">{userData?.company}</div>
                         </div>
                         <div className="col-5 col-md-3 bg-light border-bottom border-white border-3">
                             <div className="p-2">Phone</div>
                         </div>
                         <div className="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
-                            <div className="p-2">+1 (248) 679-8745</div>
+                            <div className="p-2">{userData?.phoneNumber}</div>
                         </div>
                         <div className="col-5 col-md-3 bg-light border-bottom border-white border-3">
                             <div className="p-2">Email</div>
                         </div>
                         <div className="col-7 col-md-9 bg-light border-start border-bottom border-white border-3">
-                            <div className="p-2">leo@example.com</div>
+                            <div className="p-2">{userData?.email}</div>
                         </div>
                         </div>
                     </div>
@@ -82,7 +87,7 @@ const SellerProfileTab: React.FC<SellerProfileTabProps> = ({ tabs }) => {
                         <div className="col-12">
                             <div className="row gy-2">
                             <div className="col-12">
-                                <img src="https://picsum.photos/200?random=1" className="rounded-pill img-fluid" alt="Luna John"/>
+                                <img src={userData && (userData?.profilePicture)?CREATE_URL(userData.profilePicture):"https://picsum.photos/200?random=1"} width={200}  className="img-fluid rounded-circle" alt="Luna John"/>
                             </div>
                             <div className="col-12">
                                 <a href="#!" className="bg-primary text-light p-1 link-light rounded p-2">
@@ -96,39 +101,31 @@ const SellerProfileTab: React.FC<SellerProfileTabProps> = ({ tabs }) => {
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputFirstName" className="form-label">First Name</label>
-                            <input type="text" className="form-control" id="inputFirstName" defaultValue="Ethan"/>
+                            <input type="text" className="form-control" id="inputFirstName" defaultValue={userData?.firstName}/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputLastName" className="form-label">Last Name</label>
-                            <input type="text" className="form-control" id="inputLastName" defaultValue="Leo"/>
+                            <input type="text" className="form-control" id="inputLastName" defaultValue={userData?.lastName}/>
                         </div>
                         <div className="col-12 col-md-6">
-                            <label htmlFor="inputEducation" className="form-label">Education</label>
-                            <input type="text" className="form-control" id="inputEducation" defaultValue="M.S Computer Science"/>
-                        </div>
-                        <div className="col-12 col-md-6">
-                            <label htmlFor="inputSkills" className="form-label">Skills</label>
-                            <input type="text" className="form-control" id="inputSkills" defaultValue="HTML, SCSS, Javascript, React, Vue, Angular, UI, UX"/>
-                        </div>
-                        <div className="col-12 col-md-6">
-                            <label htmlFor="inputJob" className="form-label">Job</label>
-                            <input type="text" className="form-control" id="inputJob" defaultValue="Project Manager"/>
+                            <label htmlFor="inputEducation" className="form-label">Title</label>
+                            <input type="text" className="form-control" id="inputEducation" defaultValue={userData?.title}/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputCompany" className="form-label">Company</label>
-                            <input type="text" className="form-control" id="inputCompany" defaultValue="GitHub Inc"/>
+                            <input type="text" className="form-control" id="inputCompany" defaultValue={userData?.company}/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputPhone" className="form-label">Phone</label>
-                            <input type="tel" className="form-control" id="inputPhone" defaultValue="+12486798745"/>
+                            <input type="tel" className="form-control" id="inputPhone" defaultValue={userData?.phoneNumber}/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputEmail" className="form-label">Email</label>
-                            <input type="email" className="form-control" id="inputEmail" defaultValue="leo@example.com"/>
+                            <input type="email" className="form-control" id="inputEmail" defaultValue={userData?.email}/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputAddress" className="form-label">Address</label>
-                            <input type="text" className="form-control" id="inputAddress" defaultValue="Mountain View, California"/>
+                            <input type="text" className="form-control" id="inputAddress" defaultValue={userData?.address}/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputCountry" className="form-label">Country</label>
@@ -381,23 +378,23 @@ const SellerProfileTab: React.FC<SellerProfileTabProps> = ({ tabs }) => {
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputYouTube" className="form-label">YouTube</label>
-                            <input type="text" className="form-control" id="inputYouTube" defaultValue="https://www.youtube.com/EthanLeo"/>
+                            <input type="text" className="form-control" id="inputYouTube" defaultValue={userData?.youtube}/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputX" className="form-label">X</label>
-                            <input type="text" className="form-control" id="inputX" defaultValue="https://twitter.com/EthanLeo"/>
+                            <input type="text" className="form-control" id="inputX" defaultValue={userData?.twitter}/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputFacebook" className="form-label">Facebook</label>
-                            <input type="text" className="form-control" id="inputFacebook" defaultValue="https://www.facebook.com/EthanLeo"/>
+                            <input type="text" className="form-control" id="inputFacebook" defaultValue={userData?.facebook}/>
                         </div>
                         <div className="col-12 col-md-6">
                             <label htmlFor="inputLinkedIn" className="form-label">LinkedIn</label>
-                            <input type="text" className="form-control" id="inputLinkedIn" defaultValue="https://www.linkedin.com/EthanLeo"/>
+                            <input type="text" className="form-control" id="inputLinkedIn" defaultValue={userData?.linkedin}/>
                         </div>
                         <div className="col-12">
                             <label htmlFor="inputAbout" className="form-label">About</label>
-                            <textarea className="form-control" id="inputAbout" defaultValue={"Ethan Leo is a seasoned and results-driven Project Manager who brings experience and expertise to project management. With a proven track record of successfully delivering complex projects on time and within budget, Ethan Leo is the go-to professional for organizations seeking efficient and effective project leadership."}></textarea>
+                            <textarea className="form-control" id="inputAbout" defaultValue={userData?.about}></textarea>
                         </div>
                         <div className="col-12">
                             <button type="submit" className="btn btn-primary">Save Changes</button>
@@ -445,29 +442,6 @@ const SellerProfileTab: React.FC<SellerProfileTabProps> = ({ tabs }) => {
                     </div>
                 </Tab>
                 <Tab eventKey="Password" title="Password">
-                    <div className="tab-pane">
-                        <form action="#!">
-                        <div className="row gy-3 gy-xxl-4">
-                            <div className="col-12">
-                            <label htmlFor="currentPassword" className="form-label">Current Password</label>
-                            <input type="password" className="form-control" id="currentPassword"/>
-                            </div>
-                            <div className="col-12">
-                            <label htmlFor="newPassword" className="form-label">New Password</label>
-                            <input type="password" className="form-control" id="newPassword"/>
-                            </div>
-                            <div className="col-12">
-                            <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
-                            <input type="password" className="form-control" id="confirmPassword"/>
-                            </div>
-                            <div className="col-12">
-                            <button type="submit" className="btn btn-primary">Change Password</button>
-                            </div>
-                        </div>
-                        </form>
-                    </div>
-                </Tab>
-                <Tab eventKey="Notifications" title="Notifications">
                     <div className="tab-pane">
                         <form action="#!">
                         <div className="row gy-3 gy-xxl-4">
