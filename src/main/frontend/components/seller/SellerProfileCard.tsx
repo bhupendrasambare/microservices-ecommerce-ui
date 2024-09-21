@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 function SellerProfileCard() {
 
     const userData:any|null = useSelector((state: RootState) => state.auth.user);
-    console.log(userData)
 
   return (
     <div>
@@ -17,7 +16,7 @@ function SellerProfileCard() {
                     <div className="card-header text-bg-primary">Welcome, {userData?.firstName}</div>
                     <div className="card-body">
                         <div className="text-center mb-3">
-                        <img src={userData && (userData?.profilePicture)?CREATE_URL(userData.profilePicture):"https://picsum.photos/200?random=1"} className="img-fluid rounded-circle" alt="Bhupendra sambare"/>
+                        <img width={200} src={userData && (userData?.profilePicture)?CREATE_URL(userData.profilePicture):"https://picsum.photos/200?random=1"} className="img-fluid rounded-circle" alt="Bhupendra sambare"/>
                         </div>
                         <h5 className="text-center mb-1">{userData?.firstName + " " + userData?.lastName}</h5>
                         <p className="text-center text-secondary mb-4">{userData?.title}</p>

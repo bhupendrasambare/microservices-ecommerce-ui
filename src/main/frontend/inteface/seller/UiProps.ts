@@ -19,3 +19,9 @@ export interface DashboardCardProps {
     value:string;
     theme:string;
 }
+
+export interface SellerAddEditProp {
+    data: any;
+    show: boolean;
+    onHide: () => void;
+}

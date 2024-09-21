@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 import { Table, Pagination, Form, Container, Row, Col, Button } from 'react-bootstrap';
 import { LiaPenAltSolid, LiaPlusCircleSolid, LiaPlusSolid } from 'react-icons/lia';
 import { MdDelete } from 'react-icons/md';
+import SellerAddEditProduct from './SellerAddEditProduct';
+import { BiSolidImageAdd } from 'react-icons/bi';
+import { BsInfoCircleFill } from 'react-icons/bs';
 
 
 
@@ -21,6 +24,7 @@ const data = Array.from({ length: 100 }, (_, index) => ({
 const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize, setPageSize] = useState(5);
+    const [modalShow, setModalShow] = useState<boolean>(false);
   
     const totalPages = Math.ceil(data.length / pageSize);
   
@@ -51,91 +55,98 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
     }
 
     const handleAddProductClick = () => {
-        // Handle the click event here
-        console.log('Add Product clicked');
-        // You can navigate to another page or show a modal here
-      };
+        setModalShow(true)
+    };
   
     return (
-      <Container className='shadow bg-light py-2 rounded-3 my-2'>
-        <Row className="my-3">
-          <Col>
-            <h4 className='fw-bold'>{(top)?"Top Products":"Products"}</h4>
-          </Col>
-          <Col className="text-end">
-            <Form.Select value={pageSize} onChange={handlePageSizeChange} style={{ width: 'auto', display: 'inline-block' }}>
-              <option value={5}>5</option>
-              <option value={10}>10</option>
-              <option value={20}>20</option>
-              <option value={50}>50</option>
-            </Form.Select>
-          </Col>
-        </Row>
-        {
-          addProduct &&
+       <>
+            <SellerAddEditProduct 
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                data={null}
+            />
+            <Container className='shadow bg-light py-2 rounded-3 my-2'>
+                <Row className="my-3">
+                <Col>
+                    <h4 className='fw-bold'>{(top)?"Top Products":"Products"}</h4>
+                </Col>
+                <Col className="text-end">
+                    <Form.Select value={pageSize} onChange={handlePageSizeChange} style={{ width: 'auto', display: 'inline-block' }}>
+                    <option value={5}>5</option>
+                    <option value={10}>10</option>
+                    <option value={20}>20</option>
+                    <option value={50}>50</option>
+                    </Form.Select>
+                </Col>
+                </Row>
+                {
+                addProduct &&
 
-            <div className="d-flex w-100 justify-content-end">
-              <div
-                  className="border-dark border-2 border rounded-5 px-2 my-2 border-bold"
-                  onClick={handleAddProductClick}
-                  style={{ cursor: 'pointer' }} // Optional: change cursor to pointer to indicate it's clickable
-                  >
-                  <LiaPlusCircleSolid size={20} /> Add Product
-              </div>
-            </div>
-        }
-  
-        <Table striped bordered hover responsive >
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Price</th>
-              <th>final Price</th>
-              <th>Category</th>
-              <th>Status</th>
-              {
-                editable?
-                <th>Actions</th>:<></>
-              }
-            </tr>
-          </thead>
-          <tbody>
-            {currentPageData.map((item) => (
-              <tr key={item.id}>
-                <td className='d-flex justify-content-center'><img className='rounded-3 shadow' width={50} src={item.image} /></td>
-                <td>{item.name}</td>
-                <td>{item.description}</td>
-                <td>{item.price}</td>
-                <td>{item.discountPrice}</td>
-                <td>{item.category}</td>
-                <td>{item.status}</td>
-              {
-                editable?
-                <td>
-                  <div className="d-flex">
-                    <LiaPenAltSolid size={20} className='mx-1'/>
-                    <MdDelete size={20} className='mx-1'/>
-                  </div>
-                </td>:<></>
-              }
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-  
-        {/* Pagination */}
-        <Pagination className="custom-pagination">
-            <Pagination.First className="pagination-first" onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
-            <Pagination.Prev className="pagination-prev" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
-            
-            {pages}
-            
-            <Pagination.Next className="pagination-next" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} />
-            <Pagination.Last className="pagination-last" onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} />
-        </Pagination>
-      </Container>
+                    <div className="d-flex w-100 justify-content-end">
+                    <div
+                        className="border-dark border-2 border rounded-5 px-2 my-2 border-bold"
+                        onClick={handleAddProductClick}
+                        style={{ cursor: 'pointer' }} // Optional: change cursor to pointer to indicate it's clickable
+                        >
+                        <LiaPlusCircleSolid size={20} /> Add Product
+                    </div>
+                    </div>
+                }
+        
+                <Table striped bordered hover responsive >
+                <thead>
+                    <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>final Price</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    {
+                        editable?
+                        <th>Actions</th>:<></>
+                    }
+                    </tr>
+                </thead>
+                <tbody>
+                    {currentPageData.map((item) => (
+                    <tr key={item.id}>
+                        <td className='d-flex justify-content-center'><img className='rounded-3 shadow' width={50} src={item.image} /></td>
+                        <td>{item.name}</td>
+                        <td>{item.description}</td>
+                        <td>{item.price}</td>
+                        <td>{item.discountPrice}</td>
+                        <td>{item.category}</td>
+                        <td>{item.status}</td>
+                    {
+                        editable?
+                        <td>
+                        <div className="d-flex">
+                            <LiaPenAltSolid size={20} className='mx-2 text-success'/>
+                            <BsInfoCircleFill size={20} className='mx-2 text-info'/>
+                            <BiSolidImageAdd size={20} className='mx-2 text-primary'/>
+                            <MdDelete size={20} className='mx-2 text-danger'/>
+                        </div>
+                        </td>:<></>
+                    }
+                    </tr>
+                    ))}
+                </tbody>
+                </Table>
+        
+                {/* Pagination */}
+                <Pagination className="custom-pagination">
+                    <Pagination.First className="pagination-first" onClick={() => handlePageChange(1)} disabled={currentPage === 1} />
+                    <Pagination.Prev className="pagination-prev" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} />
+                    
+                    {pages}
+                    
+                    <Pagination.Next className="pagination-next" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} />
+                    <Pagination.Last className="pagination-last" onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} />
+                </Pagination>
+            </Container>
+      </> 
     );
 };
 
