@@ -24,4 +24,9 @@ export interface SellerAddEditProp {
     data: any;
     show: boolean;
     onHide: () => void;
+    handleClose: () => void;
+}
+
+export interface ProductItemProps {
+    description: string|null;
 }

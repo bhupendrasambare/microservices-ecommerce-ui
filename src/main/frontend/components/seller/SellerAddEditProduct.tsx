@@ -1,13 +1,17 @@
 import axios from 'axios'
-import { PRODUCT_CATEGORIES_URL } from 'Frontend/constants/urls'
+import { ADD_PRODUCT_URL, CREATE_TOKEN, PRODUCT_CATEGORIES_URL } from 'Frontend/constants/urls'
 import { ApiResponse, ProductCategories } from 'Frontend/inteface/seller/ApiRespose'
 import { SellerAddEditProp } from 'Frontend/inteface/seller/UiProps'
+import { RootState } from 'Frontend/storage'
 import React, { useEffect, useState } from 'react'
 import { Modal } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 
 const SellerAddEditProduct: React.FC<SellerAddEditProp> = (props) => {
+    const token = useSelector((state: RootState) => state.auth.token);
     const [categories, setCategories] = useState<ProductCategories[]>([]);
-    const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
+    const [selectedCategoryIds, setSelectedCategoryIds] = useState<number[]>([]);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     const [name,setName] = useState<string>("");
     const [suk,setSuk] = useState<string>("");
     const [price,setPrice] = useState<number>(0.0);
@@ -21,6 +25,7 @@ const SellerAddEditProduct: React.FC<SellerAddEditProp> = (props) => {
     const [priceError,setPriceError] = useState<string>("");
     const [sellingPriceError,setSellingPriceError] = useState<string>("");
     const [quantityError,setQuantityError] = useState<string>("");
+    const [categoryError,setCategoryError] = useState<string>("");
     const [descriptionError,setDescriptionError] = useState<string>("");
 
     const clearErrorMsg = () =>{
@@ -34,8 +39,8 @@ const SellerAddEditProduct: React.FC<SellerAddEditProp> = (props) => {
         if(price==null || price<=0.009){ setPriceError("Price must be reater then 0.009");setValid(false);return; }
         if(sellingPrice==null || sellingPrice<=0.009){ setSellingPriceError("Selling price must be reater then 0.009");setValid(false);return; }
         if(quantity==null || quantity<=0){ setQuantityError("Quantity must be greater then 0");setValid(false);return; }
-        console.log(description)
         if(description==null || description==""){ setDescriptionError("Description is required");setValid(false);return; }
+        if(selectedCategoryIds==null || selectedCategoryIds.length<=0){ setCategoryError("Please select atlest one category");setValid(false);return; }
         setValid(true);
     }
 
@@ -43,7 +48,29 @@ const SellerAddEditProduct: React.FC<SellerAddEditProp> = (props) => {
         e.preventDefault();
         setValid(true); clearErrorMsg(); validateForm();
         if(valid){
-
+            axios({
+                url: ADD_PRODUCT_URL,
+                method: 'POST',
+                headers:{
+                    Authorization:CREATE_TOKEN(token)
+                },
+                data: {
+                    "name": name,
+                    "description": description,
+                    "sku": suk,
+                    "price": price,
+                    "discountPrice": sellingPrice,
+                    "quantity": quantity,
+                    "status": "AVAILABLE",
+                    "categoryIds": selectedCategoryIds
+                },
+            })
+            .then((res) => {
+                const addProductResponse:ApiResponse = res.data;
+                if(addProductResponse.status=="SUCCESS"){
+                    props.handleClose();
+                }
+            })
         }
     }
 
@@ -52,16 +79,20 @@ const SellerAddEditProduct: React.FC<SellerAddEditProp> = (props) => {
           const response = await axios.get<ApiResponse<ProductCategories[]|null|[]>>( PRODUCT_CATEGORIES_URL );
           if (response.data.status === 'SUCCESS' && response.data.data) {
             setCategories(response.data.data);
-            if(response.data?.data?.length>0){
-                setSelectedCategoryId(response.data?.data[0].id)
-            }
           }
         } catch (error) { }
     };
 
-    const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedId = Number(event.target.value);
-        setSelectedCategoryId(selectedId);
+    const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+
+    const handleCheckboxChange = (categoryId: number|null) => {
+        if(categoryId!=null){
+            setSelectedCategoryIds((prevSelected) =>
+                prevSelected.includes(categoryId)
+                ? prevSelected.filter((id) => id !== categoryId) // Remove if already selected
+                : [...prevSelected, categoryId] // Add if not selected
+            );
+        }
     };
 
     useEffect(() => {
@@ -114,15 +145,35 @@ const SellerAddEditProduct: React.FC<SellerAddEditProp> = (props) => {
                             </label>
                         </div>
                         <div className="form-group col-sm-6 flex-column d-flex">
-                            <label className="form-control-label ">Category<span className="text-danger"> *</span>
-                                <select id="category-select" className='form-control' value={selectedCategoryId ?? ''} onChange={handleCategoryChange}>
-                                    <option value="" disabled>Select a category</option>
-                                    {categories.map((category) => (
-                                        <option key={category.id} value={category.id ?? ''}>
-                                        {category.name}
-                                        </option>
-                                    ))}
-                                </select>
+                            <label className={("form-control-label ")+(((categoryError!="")?"text-danger":""))}>{(categoryError!="")?categoryError:"Categories"}<span className="text-danger"> *</span>
+                                <div className="dropdown">
+                                    <button
+                                        className="btn btn-outline-secondary dropdown-toggle form-control"
+                                        type="button"
+                                        onClick={toggleDropdown}
+                                        aria-expanded={dropdownOpen}
+                                    >
+                                    {selectedCategoryIds.length === 0 ? "Select categories" : `${selectedCategoryIds.length} selected`}
+                                    </button>
+
+                                    {dropdownOpen && (
+                                    <ul className="dropdown-menu show" style={{ width: '100%' }}>
+                                        {categories.map((category) => (
+                                        <li key={category.id} className="dropdown-item">
+                                            {category.id && 
+                                            <input
+                                            type="checkbox"
+                                            id={`category-${category.id}`}
+                                            checked={selectedCategoryIds.includes(category.id)}
+                                            onChange={() => handleCheckboxChange(category.id)}
+                                            />
+                                            }
+                                            <label htmlFor={`category-${category.id}`} className="ms-2">{category.name}</label>
+                                        </li>
+                                        ))}
+                                    </ul>
+                                    )}
+                                </div>
                             </label>
                         </div>
                     </div>

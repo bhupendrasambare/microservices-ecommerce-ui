@@ -1,6 +1,5 @@
 import { LoginForm } from '@vaadin/react-components'
 import axios from 'axios';
-import config from 'Frontend/config';
 import { CREATE_TOKEN, LOGIN_URL, VALIDATE_URL } from 'Frontend/constants/urls';
 import { RootState } from 'Frontend/storage';
 import { setToken, setUser } from 'Frontend/storage/authSlice';
@@ -29,7 +28,6 @@ function Login() {
             if (res.status === 200) {
                 const resData: any = res.data.data;
                 const tokenString: string = resData;
-                dispatch(setToken(tokenString));
                 try{
                     axios({
                         url: VALIDATE_URL,
@@ -38,12 +36,16 @@ function Login() {
                         }
                     })
                     .then(async(userResponse) => {
-                        dispatch(setUser(userResponse.data.data));
+                        if((userResponse.data.data.roles.name == "SELLER")){
+                            dispatch(setToken(tokenString));
+                            dispatch(setUser(userResponse.data.data));
+                            navigate('/seller/account');
+                        }
                     })
                 }catch(e:any){
         
                 }
-                navigate('/seller/account');
+                setErrorMessage(true);
             } else {
                 setErrorMessage(true);
             }
@@ -73,7 +75,7 @@ function Login() {
         },
         errorMessage: {
           title: 'Incorrect email or password',
-          message: 'Please check that the email and password are correct and try again.',
+          message: 'Please check that the email and password are correct for seller login and try again.',
           username: 'Email is required',
           password: 'Password is required',
         },

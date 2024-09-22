@@ -13,7 +13,6 @@ function NavBar() {
 
     const token:string|null = useSelector((state: RootState) => state.auth.token);
     const isActive = (pathname: string) => location.pathname === pathname;
-    console.log(token)
     const [modalShow, setModalShow] = useState<boolean>(false);
     const checkLogin = () =>{
         if(token){
