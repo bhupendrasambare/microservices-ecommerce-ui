@@ -16,14 +16,14 @@ const ProductDescription: React.FC<ProductItemProps> = ({ description }) => {
     const displayedDescription = isExpanded ? description : words.slice(0, 20).join('') + (isLong ? '...' : '');
 
     return (
-        <td>
+        <div>
             {displayedDescription}
             {isLong && (
                 <span style={{ color: 'blue', cursor: 'pointer', marginLeft: '5px' }} onClick={toggleDescription}>
                     {isExpanded ? 'Hide' : 'Show more'}
                 </span>
             )}
-        </td>
+        </div>
     );
 };
 

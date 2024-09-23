@@ -20,8 +20,16 @@ export interface DashboardCardProps {
     theme:string;
 }
 
+export interface ProductDetails {
+    categories:any;
+    product:any;
+    productAttributes:[];
+    productImages:[];
+    productReviews:[];
+}
+
 export interface SellerAddEditProp {
-    data: any;
+    data: null|ProductDetails;
     show: boolean;
     onHide: () => void;
     handleClose: () => void;

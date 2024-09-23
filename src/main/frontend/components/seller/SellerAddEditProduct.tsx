@@ -28,6 +28,7 @@ const SellerAddEditProduct: React.FC<SellerAddEditProp> = (props) => {
     const [categoryError,setCategoryError] = useState<string>("");
     const [descriptionError,setDescriptionError] = useState<string>("");
 
+    
     const clearErrorMsg = () =>{
         setNameError("");setSukError("");setPriceError("");
         setSellingPriceError("");setQuantityError("");setDescriptionError("");
@@ -97,12 +98,15 @@ const SellerAddEditProduct: React.FC<SellerAddEditProp> = (props) => {
 
     useEffect(() => {
         fetchCategories();
+        
+        console.log(props.data?.product)
     }, []);
+
 
   return (
     <div>
         <Modal
-        {...props}
+        show={props.show} onHide={props.handleClose}
         size="xl"
         aria-labelledby="contained-modal-title-vcenter"
         centered

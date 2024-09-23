@@ -12,21 +12,28 @@ import { CREATE_TOKEN, LOGIN_USER_PRODUCT_FETCH } from 'Frontend/constants/urls'
 import { RootState } from 'Frontend/storage';
 import { useSelector } from 'react-redux';
 import ProductDescription from './ProductDescription';
+import SellerAddEditAttributes from './SellerAddEditAttributes';
 
 const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top }) => {
     const token = useSelector((state: RootState) => state.auth.token);
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize, setPageSize] = useState(5);
-    const [modalShow, setModalShow] = useState<boolean>(false);
     const [productList, setProductList] = useState<any[]>([]);
+    const [editData,setEditData] = useState(null);
 
+    const [modalShow, setModalShow] = useState<boolean>(false);
     const handleClose = () => {setModalShow(false);checkData()};
-    const handleAddProductClick = () => setModalShow(true);
-  
-    const totalPages = Math.ceil(productList.length / pageSize);
+    const handleAddProductClick = (tempData:any) => {
+        setModalShow(true);setEditData(tempData);
+        // console.log(tempData);
+    };
+
+    const [attributeModalShow, setAttributeModalShow] = useState<boolean>(false);
+    const attributeHandleClose = () => {setAttributeModalShow(false);checkData();};
+    const attributeHandleAddProductClick = (tempData:any) => {setAttributeModalShow(true);setEditData(tempData)};
   
     const handlePageChange = (page: number) => {
-      if (page >= 1 && page <= totalPages) {
+      if (page >= 1 && page <= (Math.ceil(productList.length / pageSize))) {
         setCurrentPage(page);
       }
     };
@@ -36,12 +43,9 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
       setCurrentPage(1);
     };
 
-    const maxPagesToShow = 5;   
-    const halfMaxPagesToShow = Math.floor(maxPagesToShow / 2);  
-    let startPage = Math.max(1, currentPage - halfMaxPagesToShow);
-    let endPage = Math.min(totalPages, currentPage + halfMaxPagesToShow);
-    const startIndex = (currentPage - 1) * pageSize;
-    const currentPageData = productList.slice(startIndex, startIndex + pageSize);
+    let startPage = Math.max(1, currentPage - Math.floor(5 / 2));
+    let endPage = Math.min((Math.ceil(productList.length / pageSize)), currentPage + Math.floor(5 / 2));
+    const currentPageData = productList.slice(((currentPage - 1) * pageSize), ((currentPage - 1) * pageSize) + pageSize);
     const pages = [];
     for (let i = startPage; i <= endPage; i++) {
         pages.push(
@@ -60,7 +64,6 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
     
             if (response.data.status === 'SUCCESS' && response.data.data) {
                 setProductList(response.data.data);
-                console.log(response.data.data)
             }
         } catch (error) {
             console.error('Error fetching product data', error);
@@ -77,7 +80,13 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 handleClose={handleClose}
-                data={null}
+                data={editData}
+            />
+            <SellerAddEditAttributes 
+                show={attributeModalShow}
+                onHide={() => setAttributeModalShow(false)}
+                handleClose={attributeHandleClose}
+                data={editData}
             />
             <Container className='shadow bg-light py-2 rounded-3 my-2'>
                 <Row className="my-3">
@@ -99,15 +108,14 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
                     <div className="d-flex w-100 justify-content-end">
                     <div
                         className="border-dark border-2 border rounded-5 px-2 my-2 border-bold"
-                        onClick={handleAddProductClick}
+                        onClick={()=>handleAddProductClick(null)}
                         style={{ cursor: 'pointer' }} // Optional: change cursor to pointer to indicate it's clickable
                         >
                         <LiaPlusCircleSolid size={20} /> Add Product
                     </div>
                     </div>
                 }
-        
-                <Table striped bordered hover responsive >
+                <Table striped bordered hover responsive="xl" >
                 <thead>
                     <tr>
                     {/* <th>Image</th> */}
@@ -129,39 +137,41 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
                     {currentPageData.map((item) => (
                     <tr key={item.product.id}>
                         {/* <td className='d-flex justify-content-center'><img className='rounded-3 shadow' width={50} src={item.image} /></td> */}
-                        <td>{item?.product?.name}</td>
+                        <td className='fw-bold'>{item?.product?.name}</td>
                         <td><ProductDescription description={item?.product?.description}/></td>
-                        <td>{item?.product?.price}</td>
-                        <td>{item?.product?.discountPrice}</td>
-                        <td>{item?.categories[0]?.categoryName}</td>
-                        <td>{item?.product?.status}</td>
+                        <td className='fw-bold text-danger'>{item?.product?.price}</td>
+                        <td className='fw-bold text-success'>{item?.product?.discountPrice}</td>
+                        <td className='fw-bold'>{item?.categories[0]?.categoryName}</td>
+                        <td className='fw-bold text-warning'>{item?.product?.status}</td>
                         {editable?
                             <td>
-                                <div className="d-flex fs-6">
-                                    <div className="btn btn-sm btn-info text-info px-2 py-1">
-                                        <BsEyeFill size={20} className='text-info'/> View
+                                <div className="d-flex flex-wrap fs-6">
+                                    <div className="btn btn-sm btn-info px-2 text-light fw-bold rounded-pill py-1 me-1 my-1 d-flex">
+                                        <BsEyeFill size={20} className=' me-1'/> View
                                     </div>
-                                    <div className="btn btn-sm btn-info text-info px-2 py-1 ms-1">
-                                        <BsInfoCircleFill size={20} className='text-info'/> Attributes
+                                    <div className="btn btn-sm btn-info text-light fw-bold rounded-pill px-2 py-1 me-1 my-1 d-flex"
+                                        onClick={()=>attributeHandleAddProductClick(item)}
+                                    >
+                                        <BsInfoCircleFill size={20} className='me-1'/> Attributes
                                     </div>
                                 </div>
-                            </td>:<></>
+                            </td>:''
                         }
                         {
                         editable?
                             <td>
-                                <div className="d-flex">
-                                    <div className="btn btn-sm btn-success text-success px-2 py-1">
-                                        <LiaPenAltSolid size={20} className='text-success'/> Edit
+                                <div className="d-flex flex-wrap">
+                                    <div className="btn btn-sm btn-success  rounded-pill px-2 py-1 d-flex me-1 my-1">
+                                        <LiaPenAltSolid  size={20} className='me-1' onClick={()=>{handleAddProductClick(item)}}/> Edit
                                     </div>
-                                    <div className="btn btn-sm btn-primary text-success px-2 py-1 mx-1">
-                                        <BiSolidImageAdd size={20} className='text-success'/> images
+                                    <div className="btn btn-sm btn-primary rounded-pill px-2 py-1 d-flex me-1 my-1">
+                                        <BiSolidImageAdd size={20} className='me-1'/> images
                                     </div>
-                                    <div className="btn btn-sm btn-danger text-danger px-2 py-1">
-                                        <MdDelete size={20} className='text-danger'/> Delete
+                                    <div className="btn btn-sm btn-danger  rounded-pill px-2 py-1 d-flex me-1 my-1">
+                                        <MdDelete size={20} className=''/> Delete
                                     </div>
                                 </div>
-                            </td>:<></>
+                            </td>:''
                         }
                     </tr>
                     ))}
@@ -175,8 +185,8 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
                     
                     {pages}
                     
-                    <Pagination.Next className="pagination-next" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} />
-                    <Pagination.Last className="pagination-last" onClick={() => handlePageChange(totalPages)} disabled={currentPage === totalPages} />
+                    <Pagination.Next className="pagination-next" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === (Math.ceil(productList.length / pageSize))} />
+                    <Pagination.Last className="pagination-last" onClick={() => handlePageChange((Math.ceil(productList.length / pageSize)))} disabled={currentPage === (Math.ceil(productList.length / pageSize))} />
                 </Pagination>
             </Container>
       </> 
