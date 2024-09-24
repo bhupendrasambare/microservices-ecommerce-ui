@@ -98,9 +98,26 @@ const SellerAddEditProduct: React.FC<SellerAddEditProp> = (props) => {
 
     useEffect(() => {
         fetchCategories();
-        
+        if(props.data?.product!=null){
+            var productData = props.data.product;
+            if(productData.name!=null){ setName(productData.name); }
+            if(productData.sku!=null){ setSuk(productData.sku); }
+            if(productData.price!=null){ setPrice(productData.price); }
+            if(productData.discountPrice!=null){ setSellingPrice(productData.discountPrice); }
+            if(productData.quantity!=null){ setQuantity(productData.quantity); }
+            if(productData.description!=null){ setDescription(productData.description); }
+            if(props.data.categories!=null && props.data.categories.length>0){
+                props.data.categories.map((data:any) => (
+                    setSelectedCategoryIds((prevSelected) =>
+                        prevSelected.includes(data.id)
+                        ? prevSelected.filter((id) => id !== data.id) // Remove if already selected
+                        : [...prevSelected, data.id] // Add if not selected
+                    )
+                ))
+            }
+        }
         console.log(props.data?.product)
-    }, []);
+    }, [props.data]);
 
 
   return (

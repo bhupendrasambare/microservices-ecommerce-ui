@@ -13,6 +13,7 @@ import { RootState } from 'Frontend/storage';
 import { useSelector } from 'react-redux';
 import ProductDescription from './ProductDescription';
 import SellerAddEditAttributes from './SellerAddEditAttributes';
+import SellerAddImage from './SellerAddImage';
 
 const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top }) => {
     const token = useSelector((state: RootState) => state.auth.token);
@@ -25,12 +26,18 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
     const handleClose = () => {setModalShow(false);checkData()};
     const handleAddProductClick = (tempData:any) => {
         setModalShow(true);setEditData(tempData);
-        // console.log(tempData);
+    };
+    const handleAddImageClick = (tempData:any) => {
+        setImageModalShow(true);setEditData(tempData);
     };
 
     const [attributeModalShow, setAttributeModalShow] = useState<boolean>(false);
     const attributeHandleClose = () => {setAttributeModalShow(false);checkData();};
     const attributeHandleAddProductClick = (tempData:any) => {setAttributeModalShow(true);setEditData(tempData)};
+
+    const [imageModalShow, setImageModalShow] = useState<boolean>(false);
+    const imageHandleClose = () => {setImageModalShow(false);checkData();};
+    const imageHandleAddProductClick = (tempData:any) => {setImageModalShow(true);setEditData(tempData)};
   
     const handlePageChange = (page: number) => {
       if (page >= 1 && page <= (Math.ceil(productList.length / pageSize))) {
@@ -86,6 +93,12 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
                 show={attributeModalShow}
                 onHide={() => setAttributeModalShow(false)}
                 handleClose={attributeHandleClose}
+                data={editData}
+            />
+            <SellerAddImage 
+                show={imageModalShow}
+                onHide={() => setImageModalShow(false)}
+                handleClose={imageHandleClose}
                 data={editData}
             />
             <Container className='shadow bg-light py-2 rounded-3 my-2'>
@@ -161,10 +174,10 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
                         editable?
                             <td>
                                 <div className="d-flex flex-wrap">
-                                    <div className="btn btn-sm btn-success  rounded-pill px-2 py-1 d-flex me-1 my-1">
-                                        <LiaPenAltSolid  size={20} className='me-1' onClick={()=>{handleAddProductClick(item)}}/> Edit
+                                    <div className="btn btn-sm btn-success  rounded-pill px-2 py-1 d-flex me-1 my-1" onClick={()=>{handleAddProductClick(item)}}>
+                                        <LiaPenAltSolid  size={20} className='me-1'/> Edit
                                     </div>
-                                    <div className="btn btn-sm btn-primary rounded-pill px-2 py-1 d-flex me-1 my-1">
+                                    <div className="btn btn-sm btn-primary rounded-pill px-2 py-1 d-flex me-1 my-1" onClick={()=>{handleAddImageClick(item)}}>
                                         <BiSolidImageAdd size={20} className='me-1'/> images
                                     </div>
                                     <div className="btn btn-sm btn-danger  rounded-pill px-2 py-1 d-flex me-1 my-1">
