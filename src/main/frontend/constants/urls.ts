@@ -8,6 +8,8 @@ export const ADD_PRODUCT_ATTRIBUTE_URL = (attributeId:number|null) => ((config.b
 export const ADD_PRODUCT_IMAGE_URL = (productId:number) => config.baseUrl+"/product/"+productId+"/images";
 export const DELETE_PRODUCT_IMAGE_URL = (productId:number,imageId:number) => config.baseUrl+"/product/"+productId+"/images/"+imageId;
 export const DELETE_PRODUCT_ATTRIBUTE_URL = (attributeId:number) =>config.baseUrl+"/product/attributes/"+attributeId;
+export const UPDATE_PRODUCT_STATUS = (productId:number,status:string) =>config.baseUrl+"/product/"+productId+"/status?status="+status;
+export const UPDATE_PRODUCT_QUANTITY = (productId:number,quantity:number) =>config.baseUrl+"/product/"+productId+"/quantity?quantity="+quantity;
 export const LOGIN_USER_PRODUCT_FETCH = config.baseUrl+"/product/get";
 
 

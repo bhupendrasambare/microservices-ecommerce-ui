@@ -77,7 +77,7 @@ const SellerAddImage: React.FC<SellerAddEditProp> = (props) => {
         className='radius-20px'
         >
             <Modal.Header closeButton>
-                <Modal.Title className='fs-5'><span className='fw-bold text-dark'> {props.data?.product?.name}</span> : Add Edit product attributes</Modal.Title>
+                <Modal.Title className='fs-5'><span className='fw-bold text-dark'> {props.data?.product?.name}</span> : Add product images</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <div className="d-flex justify-content-start my-3 shadow rounded-3 p-3 align-items-center">

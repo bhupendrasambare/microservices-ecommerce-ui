@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
 import 'bootstrap/dist/css/bootstrap.css';
 import 'tiny-slider/dist/tiny-slider.css';
+import 'react-quill/dist/quill.snow.css';
 import 'Frontend/themes/microservices-ecommerce-ui/styles.css';
 import 'Frontend/themes/microservices-ecommerce-ui/styles.scss'
 import { persistor, store } from "Frontend/storage";

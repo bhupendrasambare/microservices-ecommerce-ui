@@ -272,3 +272,6 @@ border-color: #ffffff;
         width: 100% !important;
     }
 }
+.ql-editor{
+    min-height:200px;
+}

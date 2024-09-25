@@ -8,12 +8,13 @@ import { BiSolidImageAdd } from 'react-icons/bi';
 import { BsEyeFill, BsInfoCircleFill } from 'react-icons/bs';
 import axios from 'axios';
 import { ApiResponse } from 'Frontend/inteface/seller/ApiRespose';
-import { CREATE_TOKEN, LOGIN_USER_PRODUCT_FETCH } from 'Frontend/constants/urls';
+import { CREATE_TOKEN, LOGIN_USER_PRODUCT_FETCH, UPDATE_PRODUCT_QUANTITY, UPDATE_PRODUCT_STATUS } from 'Frontend/constants/urls';
 import { RootState } from 'Frontend/storage';
 import { useSelector } from 'react-redux';
 import ProductDescription from './ProductDescription';
 import SellerAddEditAttributes from './SellerAddEditAttributes';
 import SellerAddImage from './SellerAddImage';
+import SellerProductPreview from './SellerProductPreview';
 
 const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top }) => {
     const token = useSelector((state: RootState) => state.auth.token);
@@ -21,14 +22,12 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
     const [pageSize, setPageSize] = useState(5);
     const [productList, setProductList] = useState<any[]>([]);
     const [editData,setEditData] = useState(null);
+    const statuses = ['AVAILABLE', 'OUT_OF_STOCK', 'DISCONTINUED'];
 
     const [modalShow, setModalShow] = useState<boolean>(false);
     const handleClose = () => {setModalShow(false);checkData()};
     const handleAddProductClick = (tempData:any) => {
         setModalShow(true);setEditData(tempData);
-    };
-    const handleAddImageClick = (tempData:any) => {
-        setImageModalShow(true);setEditData(tempData);
     };
 
     const [attributeModalShow, setAttributeModalShow] = useState<boolean>(false);
@@ -37,7 +36,11 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
 
     const [imageModalShow, setImageModalShow] = useState<boolean>(false);
     const imageHandleClose = () => {setImageModalShow(false);checkData();};
-    const imageHandleAddProductClick = (tempData:any) => {setImageModalShow(true);setEditData(tempData)};
+    const handleAddImageClick = (tempData:any) => { setImageModalShow(true);setEditData(tempData); };
+
+    const [productModalShow, setProductModalShow] = useState<boolean>(false);
+    const productHandleClose = () => {setProductModalShow(false);checkData();};
+    const productHandleAddProductClick = (tempData:any) => {setProductModalShow(true);setEditData(tempData)};
   
     const handlePageChange = (page: number) => {
       if (page >= 1 && page <= (Math.ceil(productList.length / pageSize))) {
@@ -77,6 +80,24 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
         }
     }
 
+    const handleQuantityChange =async(id:number,quantity:number) => {
+        await axios.put(UPDATE_PRODUCT_QUANTITY(id,quantity), null, {
+            headers: {
+              Authorization: CREATE_TOKEN(token),
+            },
+        });
+        checkData();
+    }
+
+    const onStatusChange =async(id:number,status:string) => {
+        await axios.put(UPDATE_PRODUCT_STATUS(id,status), null, {
+            headers: {
+              Authorization: CREATE_TOKEN(token),
+            },
+        });
+        checkData();
+    };
+
     useEffect(()=>{
         checkData();
     },[])
@@ -87,6 +108,12 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 handleClose={handleClose}
+                data={editData}
+            />
+            <SellerProductPreview 
+                show={productModalShow}
+                onHide={() => setProductModalShow(false)}
+                handleClose={productHandleClose}
                 data={editData}
             />
             <SellerAddEditAttributes 
@@ -101,7 +128,7 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
                 handleClose={imageHandleClose}
                 data={editData}
             />
-            <Container className='shadow bg-light py-2 rounded-3 my-2'>
+            <div className='shadow bg-light p-2 rounded-3 m-2'>
                 <Row className="my-3">
                 <Col>
                     <h4 className='fw-bold'>{(top)?"Top Products":"Products"}</h4>
@@ -132,10 +159,11 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
                 <thead>
                     <tr>
                     {/* <th>Image</th> */}
+                    <th>View</th>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Price</th>
-                    <th>final Price</th>
+                    <th>Quantity</th>
                     <th>Category</th>
                     <th>Status</th>
                     { editable?
@@ -150,18 +178,35 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
                     {currentPageData.map((item) => (
                     <tr key={item.product.id}>
                         {/* <td className='d-flex justify-content-center'><img className='rounded-3 shadow' width={50} src={item.image} /></td> */}
-                        <td className='fw-bold'>{item?.product?.name}</td>
+                        <td className='fw-bold'>
+                            <div className="btn btn-sm px-2 text-light fw-bold rounded-pill py-1 my-1 d-flex"
+                             onClick={()=>productHandleAddProductClick(item)}>
+                                <BsEyeFill size={20} className='text-primary'/>
+                            </div>
+                        </td>
+                        <td className='fw-bold'><ProductDescription description={item?.product?.name}/></td>
                         <td><ProductDescription description={item?.product?.description}/></td>
-                        <td className='fw-bold text-danger'>{item?.product?.price}</td>
-                        <td className='fw-bold text-success'>{item?.product?.discountPrice}</td>
+                        <td className='fw-bold'>
+                            <span className="text-success fs-5 text-no-break">${item?.product?.discountPrice}</span><br/>
+                            <span className="text-danger text-decoration-line-through">${item?.product?.price}</span>
+                        </td>
+                        <td className='fw-bold '>
+                            <input type="number" className='form-control' style={{width:80}} value={item?.product?.quantity} 
+                            onChange={(e)=>handleQuantityChange(item?.product?.id,Number(e.target.value))} />
+                        </td>
                         <td className='fw-bold'>{item?.categories[0]?.categoryName}</td>
-                        <td className='fw-bold text-warning'>{item?.product?.status}</td>
+                        <td className='fw-bold text-warning'>
+                            <select className="form-select" value={item?.product?.status} onChange={(e)=>onStatusChange(item?.product?.id,e.target.value)}>
+                                {statuses.map((status) => (
+                                    <option key={status} value={status}>
+                                        {status}
+                                    </option>
+                                ))}
+                            </select>
+                        </td>
                         {editable?
                             <td>
                                 <div className="d-flex flex-wrap fs-6">
-                                    <div className="btn btn-sm btn-info px-2 text-light fw-bold rounded-pill py-1 me-1 my-1 d-flex">
-                                        <BsEyeFill size={20} className=' me-1'/> View
-                                    </div>
                                     <div className="btn btn-sm btn-info text-light fw-bold rounded-pill px-2 py-1 me-1 my-1 d-flex"
                                         onClick={()=>attributeHandleAddProductClick(item)}
                                     >
@@ -201,7 +246,7 @@ const SellerProducts: React.FC<SellerProductsProps> = ({ editable,addProduct,top
                     <Pagination.Next className="pagination-next" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === (Math.ceil(productList.length / pageSize))} />
                     <Pagination.Last className="pagination-last" onClick={() => handlePageChange((Math.ceil(productList.length / pageSize)))} disabled={currentPage === (Math.ceil(productList.length / pageSize))} />
                 </Pagination>
-            </Container>
+            </div>
       </> 
     );
 };

@@ -5,6 +5,7 @@ import { SellerAddEditProp } from 'Frontend/inteface/seller/UiProps'
 import { RootState } from 'Frontend/storage'
 import React, { useEffect, useState } from 'react'
 import { Modal } from 'react-bootstrap'
+import ReactQuill from 'react-quill'
 import { useSelector } from 'react-redux'
 
 const SellerAddEditProduct: React.FC<SellerAddEditProp> = (props) => {
@@ -200,8 +201,17 @@ const SellerAddEditProduct: React.FC<SellerAddEditProp> = (props) => {
                     </div>
                     <div className="row justify-content-between text-left mt-2">
                         <div className="form-group col-12 flex-column d-flex">
-                            <label className={("form-control-label ")+(((descriptionError!="")?"text-danger":""))}>{(descriptionError!="")?descriptionError:"Product description"}<span className="text-danger"> *</span>
-                                <textarea className="form-control" onChange={e => setDescription(e.target.value)} value={description} placeholder="Enter product description" />
+                            <label className={`form-control-label ${descriptionError ? "text-danger" : ""}`}>
+                                {descriptionError ? descriptionError : "Product description"}
+                                <span className="text-danger"> *</span>
+                                
+                                <ReactQuill
+                                    value={description} // This holds the HTML value
+                                    onChange={setDescription} // React Quill passes the new value (HTML) to the state
+                                    placeholder="Enter product description"
+                                    className="rounded-4 "
+
+                                />
                             </label>
                         </div>
                     </div>
