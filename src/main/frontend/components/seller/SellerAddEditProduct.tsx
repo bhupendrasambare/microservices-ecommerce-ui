@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux'
 
 const SellerAddEditProduct: React.FC<SellerAddEditProp> = (props) => {
     const token = useSelector((state: RootState) => state.auth.token);
+    const [productId,setProductId] = useState<null|number>(null)
     const [categories, setCategories] = useState<ProductCategories[]>([]);
     const [selectedCategoryIds, setSelectedCategoryIds] = useState<number[]>([]);
     const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -116,6 +117,7 @@ const SellerAddEditProduct: React.FC<SellerAddEditProp> = (props) => {
                     )
                 ))
             }
+            setProductId(productData.id);
         }
         console.log(props.data?.product)
     }, [props.data]);
