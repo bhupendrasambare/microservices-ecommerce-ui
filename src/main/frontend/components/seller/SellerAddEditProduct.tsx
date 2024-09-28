@@ -117,7 +117,6 @@ const SellerAddEditProduct: React.FC<SellerAddEditProp> = (props) => {
                     )
                 ))
             }
-            setProductId(productData.id);
         }
         console.log(props.data?.product)
     }, [props.data]);
