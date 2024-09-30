@@ -8,6 +8,7 @@ import { Modal } from 'react-bootstrap'
 import ReactQuill from 'react-quill'
 import { useSelector } from 'react-redux'
 
+
 const SellerAddEditProduct: React.FC<SellerAddEditProp> = (props) => {
     const token = useSelector((state: RootState) => state.auth.token);
     const [categories, setCategories] = useState<ProductCategories[]>([]);
