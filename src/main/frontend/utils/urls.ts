@@ -1,6 +1,7 @@
 import config from "Frontend/config";
 
 export const LOGIN_URL = config.baseUrl+"/auth/login";
+export const VALIDATE_TOKEN_URL = config.baseUrl+"/auth/validate";
 export const VALIDATE_URL = config.baseUrl+"/users/profile";
 export const PRODUCT_CATEGORIES_URL = config.baseUrl+"/product/public/category/get";
 export const ADD_PRODUCT_URL = config.baseUrl+"/product/add";

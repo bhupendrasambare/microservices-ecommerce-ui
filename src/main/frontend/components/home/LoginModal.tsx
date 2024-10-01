@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import config from 'Frontend/config';
 import { MyVerticallyCenteredModalProps } from 'Frontend/inteface/home/UiProps';
-import { LOGIN_URL } from 'Frontend/constants/urls';
+import { LOGIN_URL } from 'Frontend/utils/urls';
 
 
 

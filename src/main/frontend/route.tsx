@@ -13,6 +13,7 @@ import SellerProductPage from 'Frontend/pages/seller/SellerProductPage';
 import SellerReviewsPage from 'Frontend/pages/seller/SellerReviewsPage';
 import SellerUser from 'Frontend/pages/seller/SellerUser';
 import Login from 'Frontend/pages/seller/Login';
+import PrivateRoute from 'Frontend/utils/PrivateRoute';
 
 const routes: RouteObject[] = [
   { path: '/', element: <Home /> },
@@ -23,12 +24,12 @@ const routes: RouteObject[] = [
   { path: '/cart', element: <Cart /> },
   { path: '*', element: <NotFound /> },
 
-  { path: '/seller/', element: <Sellerindex /> },
-  { path: '/seller/*', element: <SellerNotFoundPage /> },
-  { path: '/seller/products', element: <SellerProductPage /> },
-  { path: '/seller/reviews', element: <SellerReviewsPage /> },
-  { path: '/seller/account', element: <SellerUser tabs='Overview' /> },
-  { path: '/seller/settings', element: <SellerUser tabs='Password' /> },
+  { path: '/seller/', element: <PrivateRoute element={<Sellerindex />} /> },
+  { path: '/seller/products', element: <PrivateRoute element={<SellerProductPage />} /> },
+  { path: '/seller/reviews', element: <PrivateRoute element={<SellerReviewsPage />} /> },
+  { path: '/seller/account', element: <PrivateRoute element={<SellerUser tabs="Overview" />} /> },
+  { path: '/seller/settings', element: <PrivateRoute element={<SellerUser tabs="Password" />} /> },
+  { path: '/seller/*', element: <PrivateRoute element={<SellerNotFoundPage />} /> },
   { path: '/seller/login', element: <Login /> }
   ];
   

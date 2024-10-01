@@ -130,7 +130,7 @@
       "workbox-core": "7.1.0",
       "workbox-precaching": "7.1.0"
     },
-    "hash": "229854193ce05481f3edcfc6c7538c28ab62ca9ca02138fcf35495a92f79e3b8"
+    "hash": "e6097b748cb4dc81d7871e8c221a1890c578941c70cccd03cec79df3d0b12026"
   },
   "overrides": {
     "@vaadin/bundles": "$@vaadin/bundles",
@@ -179,6 +179,7 @@
     "react-redux": "$react-redux",
     "redux": "$redux",
     "redux-persist": "$redux-persist",
-    "tiny-slider": "$tiny-slider"
+    "tiny-slider": "$tiny-slider",
+    "react-quill": "$react-quill"
   }
 }

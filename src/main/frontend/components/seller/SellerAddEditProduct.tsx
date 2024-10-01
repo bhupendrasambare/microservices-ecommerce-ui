@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ADD_PRODUCT_URL, CREATE_TOKEN, PRODUCT_CATEGORIES_URL } from 'Frontend/constants/urls'
+import { ADD_PRODUCT_URL, CREATE_TOKEN, PRODUCT_CATEGORIES_URL } from 'Frontend/utils/urls'
 import { ApiResponse, ProductCategories } from 'Frontend/inteface/seller/ApiRespose'
 import { SellerAddEditProp } from 'Frontend/inteface/seller/UiProps'
 import { RootState } from 'Frontend/storage'

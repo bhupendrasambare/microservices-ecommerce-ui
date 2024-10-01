@@ -34,7 +34,7 @@ function Footer() {
 									<input type="email" className="form-control" placeholder="Enter your email"/>
 								</div>
 								<div className="col-auto">
-									<button className="btn btn-primary">
+									<button className="btn btn-success footer-btn-home">
 										<FaPaperPlane size={20} color='white'/>
 									</button>
 								</div>

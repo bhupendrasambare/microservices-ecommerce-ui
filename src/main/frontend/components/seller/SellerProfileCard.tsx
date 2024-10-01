@@ -1,4 +1,4 @@
-import { CREATE_URL } from 'Frontend/constants/urls';
+import { CREATE_URL } from 'Frontend/utils/urls';
 import { RootState } from 'Frontend/storage';
 import React from 'react'
 import { LiaFacebook, LiaLinkedin, LiaTwitter, LiaYoutube } from 'react-icons/lia'

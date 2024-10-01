@@ -1,4 +1,4 @@
-import { CREATE_URL } from 'Frontend/constants/urls'
+import { CREATE_URL } from 'Frontend/utils/urls'
 import { SellerProfileTabProps } from 'Frontend/inteface/seller/UiProps'
 import { RootState } from 'Frontend/storage'
 import React from 'react'

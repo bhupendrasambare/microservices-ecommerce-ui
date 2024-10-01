@@ -1,6 +1,6 @@
 import { LoginForm } from '@vaadin/react-components'
 import axios from 'axios';
-import { CREATE_TOKEN, LOGIN_URL, VALIDATE_URL } from 'Frontend/constants/urls';
+import { CREATE_TOKEN, LOGIN_URL, VALIDATE_URL } from 'Frontend/utils/urls';
 import { RootState } from 'Frontend/storage';
 import { setToken, setUser } from 'Frontend/storage/authSlice';
 import React, { useState } from 'react'

@@ -8,7 +8,7 @@ import { BiSolidImageAdd } from 'react-icons/bi';
 import { BsEyeFill, BsInfoCircleFill } from 'react-icons/bs';
 import axios from 'axios';
 import { ApiResponse } from 'Frontend/inteface/seller/ApiRespose';
-import { CREATE_TOKEN, LOGIN_USER_PRODUCT_FETCH, UPDATE_PRODUCT_QUANTITY, UPDATE_PRODUCT_STATUS } from 'Frontend/constants/urls';
+import { CREATE_TOKEN, LOGIN_USER_PRODUCT_FETCH, UPDATE_PRODUCT_QUANTITY, UPDATE_PRODUCT_STATUS } from 'Frontend/utils/urls';
 import { RootState } from 'Frontend/storage';
 import { useSelector } from 'react-redux';
 import ProductDescription from './ProductDescription';

@@ -1,7 +1,7 @@
 import { SellerAddEditProp } from 'Frontend/inteface/seller/UiProps'
 import React, { useState } from 'react'
 import { Button, Card, Form, Modal, Table } from 'react-bootstrap'
-import { ADD_PRODUCT_IMAGE_URL, CREATE_TOKEN, DELETE_PRODUCT_IMAGE_URL } from 'Frontend/constants/urls'
+import { ADD_PRODUCT_IMAGE_URL, CREATE_TOKEN, DELETE_PRODUCT_IMAGE_URL } from 'Frontend/utils/urls'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
 import { RootState } from 'Frontend/storage'

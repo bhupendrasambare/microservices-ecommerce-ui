@@ -19,8 +19,8 @@ const HeroSection: React.FC<HeroSectionProp> = ({ title,description,showButton }
                             {
                                 showButton && 
                                 <p>
-                                    <div onClick={()=>navigate("/shop")} className="btn btn-secondary me-2">Shop Now</div>
-                                    <div onClick={()=>navigate("/contact")} className="btn btn-white-outline">Contact</div>
+                                    <div onClick={()=>navigate("/shop")} className="btn me-2 hero-btn-style">Shop Now</div>
+                                    <div onClick={()=>navigate("/contact")} className="btn btn-white-outline hero-btn-secondary">Contact</div>
                                 </p>
 
                             }

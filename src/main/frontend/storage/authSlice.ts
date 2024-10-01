@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { CREATE_TOKEN, VALIDATE_URL } from 'Frontend/constants/urls';
+import { CREATE_TOKEN, VALIDATE_URL } from 'Frontend/utils/urls';
 
 interface AuthState {
   token: string | null;
