@@ -21,6 +21,7 @@ const PrivateRoute = ({ element }: { element: JSX.Element }) => {
                 },
                 data: token,
             })
+            
             setIsValidToken(true);
         } catch (error) {
             console.error('Token validation failed', error);
