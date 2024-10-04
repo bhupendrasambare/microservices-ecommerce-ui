@@ -11,6 +11,7 @@ const PrivateRoute = ({ element }: { element: JSX.Element }) => {
 
   useEffect(() => {
     const validateToken = async () => {
+        
       if (token) {
         try {
             await axios({
@@ -21,7 +22,7 @@ const PrivateRoute = ({ element }: { element: JSX.Element }) => {
                 },
                 data: token,
             })
-            
+
             setIsValidToken(true);
         } catch (error) {
             console.error('Token validation failed', error);
